@@ -1,13 +1,18 @@
 .App {
     font-family: 'Noto Sans', sans-serif;
+    color: #494955;
 }
 
 .encouragement {
     font-size: 16px;
     font-weight: 300;
     line-height: 24px;
+    position: absolute;
     text-align: left;
     text-underline-position: from-font;
     text-decoration-skip-ink: none;
     color: #494955;
 }
+
+
+
