@@ -13,7 +13,7 @@ const encouragement = 'Manage your tasks and stay productive...'
       <RandomText />
       <div class="encouragement">{{ encouragement }}</div>
       <Task />
-      <CreateTask />
+<!--      <CreateTask />-->
     </section>
   </main>
 </template>
