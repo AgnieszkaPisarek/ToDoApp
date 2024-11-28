@@ -1,5 +1,4 @@
 <script setup lang="ts">
-
 import RandomText from '@/components/RandomText.vue'
 import Task from '@/components/Task.vue'
 import CreateTask from '@/components/CreateTask.vue'
@@ -13,11 +12,9 @@ const encouragement = 'Manage your tasks and stay productive...'
       <RandomText />
       <div class="encouragement">{{ encouragement }}</div>
       <Task />
-<!--      <CreateTask />-->
+      <!--      <CreateTask />-->
     </section>
   </main>
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>
