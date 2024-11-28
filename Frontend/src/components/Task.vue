@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
+import OptionsMenu from '@/components/OptionsMenu.vue'
 const input = ref('')
 const handleClick = () => {}
 </script>
@@ -9,7 +10,8 @@ const handleClick = () => {}
     <div class="task-container">
       <button class="checkButton" @click="handleClick"></button>
       <input class="thingToDo" type="text" v-model="input" />
-      <input class="date" type="date">
+      <input class="date" type="date" />
+      <OptionsMenu />
     </div>
   </section>
 </template>
