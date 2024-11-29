@@ -5,7 +5,7 @@ const createNewTaskText = ref('Write a new task')
 const input = ref('')
 const isFocused = ref(false)
 const clearPlaceholder = () => {
-  const container = document.getElementById('create-task')
+  const container = document.getElementById('thingToDo')
   if (container) {
     container.classList.add('active')
   }
@@ -13,13 +13,13 @@ const clearPlaceholder = () => {
   isFocused.value = true
 }
 const restorePlaceholder = () => {
-  const container = document.getElementById('create-task')
+  const container = document.getElementById('thingToDo')
   isFocused.value = false
   if (input.value === '') {
     createNewTaskText.value = 'Write a new task'
   }
   if (container) {
-    container.classList.remove('active') // Remove 'active' class when not focused
+    container.classList.remove('active')
   }
 }
 
@@ -28,28 +28,34 @@ onMounted(() => {})
 const handleClick = () => {}
 </script>
 <template>
-  <section class="create-task">
-    <button
-      v-if="isFocused"
-      class="checkButton"
-      @click="handleClick"
-      :placeholder="createNewTaskText"
-    ></button>
+  <section class="create-task" :class="{'focused': isFocused}" >
+    <input v-if="isFocused" id="checkButton" type="checkbox"></input>
     <input
-      type="text"
       v-model="input"
+      :placeholder="createNewTaskText"
+      class="checkButton"
       @focus="clearPlaceholder"
       @blur="restorePlaceholder"
     />
-    <button v-if="isFocused" class="addTaskButton" @click="handleClick">
+    <button v-if="isFocused" class="addTaskButton" :class="{'focused': isFocused}" @click="handleClick">
       Add Task
     </button>
   </section>
 </template>
 
 <style scoped>
-.create-task.active {
+.create-task.focused  {
   background: #ffffff;
+}
+
+#checkButton {
+  accent-color: #494955;
+  width: 25px;
+  height: 25px;
+  background-color: #ededed;
+  border: 0 solid #ccc;
+  z-index: 20;
+  cursor: pointer;
 }
 
 .create-task input::placeholder {
@@ -109,6 +115,10 @@ const handleClick = () => {}
   border-radius: 6px;
   background-color: #ffffff;
   cursor: pointer;
+}
+
+.addTaskButton.focused  {
+  background: #ededed;
 }
 
 .checkButton {

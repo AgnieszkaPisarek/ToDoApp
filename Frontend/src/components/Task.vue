@@ -2,7 +2,7 @@
 import { ref } from 'vue'
 import OptionsMenu from '@/components/OptionsMenu.vue'
 const input = ref('')
-const isChecked = ref(false)
+
 const checkButton = document.querySelector('.checkButton')
 
 if (checkButton) {
@@ -10,21 +10,12 @@ if (checkButton) {
     checkButton.classList.add('taskDoneButton')
   })
 }
-
-const handleClick = () => {
-  isChecked.value = !isChecked.value
-  const button = document.getElementById('checkButton')
-  if (button) {
-    button.style.background = '#ffffff'
-  }
-}
 </script>
 
 <template>
   <section class="task">
     <div class="task-container">
-      <button class="checkButton"></button>
-
+      <input id="checkButton" type="checkbox"></input>
       <input class="thingToDo" type="text" v-model="input" />
       <input class="date" type="date" />
       <OptionsMenu />
@@ -63,21 +54,14 @@ const handleClick = () => {
     border-color 0.3s ease;
 }
 
-.checkButton {
+#checkButton {
+  accent-color: #494955;
   width: 25px;
   height: 25px;
   background-color: #ededed;
   border: 0 solid #ccc;
-  border-radius: 6px;
   z-index: 20;
-}
-
-.checkButton:hover {
   cursor: pointer;
-}
-
-.taskDoneButton {
-  background: #494955;
 }
 
 .thingToDo {
