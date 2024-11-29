@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import CreateTask from '@/components/CreateTask.vue'
+
 function fun() {
   const optionsMenu = document.getElementById('options-menu')
 
@@ -36,6 +38,11 @@ function fun() {
 .delete {
   font-family: 'Noto Sans', serif;
   font-size: 17px;
+}
+
+.options-menu:hover {
+  background-color: #e6e6e6;
+  cursor: pointer;
 }
 
 .style {

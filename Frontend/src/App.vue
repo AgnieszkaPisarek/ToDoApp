@@ -11,10 +11,30 @@ const encouragement = 'Manage your tasks and stay productive...'
     <section class="greeting">
       <RandomText />
       <div class="encouragement">{{ encouragement }}</div>
-      <Task />
-      <!--      <CreateTask />-->
+      <div class="tasksField">
+        <Task />
+        <Task />
+        <Task />
+        <Task />
+      </div>
+
+      <CreateTask />
     </section>
   </main>
 </template>
 
-<style scoped></style>
+<style scoped>
+.App {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.tasksField {
+  height: 500px;
+  width: auto;
+  overflow: auto;
+}
+.encouragement {
+  font-size: 18px;
+}
+</style>
