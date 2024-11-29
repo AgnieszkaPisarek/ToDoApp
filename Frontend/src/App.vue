@@ -2,8 +2,14 @@
 import RandomText from '@/components/RandomText.vue'
 import Task from '@/components/Task.vue'
 import CreateTask from '@/components/CreateTask.vue'
+import { OhVueIcon, addIcons } from 'oh-vue-icons'
+import { IoEyeOutline } from 'oh-vue-icons/icons'
 
 const encouragement = 'Manage your tasks and stay productive...'
+// addIcons(IoEyeOutline)
+// const app = createApp(App)
+// app.component('v-icon', OhVueIcon)
+// app.mount('#app')
 </script>
 
 <template>
@@ -19,6 +25,8 @@ const encouragement = 'Manage your tasks and stay productive...'
       </div>
 
       <CreateTask />
+      <v-icon name="IoEyeOutline" />
+      <div class="completed">Completed 0 of 4</div>
     </section>
   </main>
 </template>
@@ -36,5 +44,11 @@ const encouragement = 'Manage your tasks and stay productive...'
 }
 .encouragement {
   font-size: 18px;
+}
+
+.completed {
+  margin-top: 5px;
+  margin-left: 10px;
+  color: #494955;
 }
 </style>
