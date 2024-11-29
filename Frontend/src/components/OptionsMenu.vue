@@ -1,8 +1,10 @@
 <script setup lang="ts">
 function fun() {
   const optionsMenu = document.getElementById('options-menu')
+
   if (optionsMenu) {
     optionsMenu.classList.add('style')
+    optionsMenu.style.visibility = 'visible'
   }
 }
 </script>
@@ -16,22 +18,39 @@ function fun() {
     </div>
   </div>
 
-  <div class="options-menu" id="options-menu"></div>
+  <div class="options-menu" id="options-menu">
+    <div class="delete">Delete task</div>
+  </div>
 </template>
 
 <style scoped>
 .container {
-  display: grid;
+  display: flex;
   place-items: center;
+}
+
+.options-menu {
+  visibility: hidden;
+}
+
+.delete {
+  font-family: 'Noto Sans', serif;
+  font-size: 17px;
 }
 
 .style {
   position: absolute;
-  width: 200px;
-  height: 300px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  width: 120px;
+  height: 40px;
   background-color: #ffffff;
   border-radius: 12px;
   border: 1px solid #ccc;
+  z-index: 100;
 }
 
 .dot {
