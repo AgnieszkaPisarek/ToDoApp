@@ -27,7 +27,7 @@ onMounted(() => {
 
 <style scoped>
 h1 {
-  font-size: 24px;
+  font-size: 36px;
   font-weight: 700;
   line-height: 32.69px;
   text-align: left;

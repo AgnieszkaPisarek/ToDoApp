@@ -5,14 +5,21 @@ const createNewTaskText = ref('Write a new task')
 const input = ref('')
 const isFocused = ref(false)
 const clearPlaceholder = () => {
+  const container = document.getElementById('create-task')
+  if (container) {
+    container.classList.add('active')
+  }
   createNewTaskText.value = ''
   isFocused.value = true
 }
-
 const restorePlaceholder = () => {
+  const container = document.getElementById('create-task')
   isFocused.value = false
   if (input.value === '') {
     createNewTaskText.value = 'Write a new task'
+  }
+  if (container) {
+    container.classList.remove('active') // Remove 'active' class when not focused
   }
 }
 
@@ -22,10 +29,14 @@ const handleClick = () => {}
 </script>
 <template>
   <section class="create-task">
-    <button v-if="isFocused" class="checkButton" @click="handleClick"></button>
+    <button
+      v-if="isFocused"
+      class="checkButton"
+      @click="handleClick"
+      :placeholder="createNewTaskText"
+    ></button>
     <input
       type="text"
-      :placeholder="createNewTaskText"
       v-model="input"
       @focus="clearPlaceholder"
       @blur="restorePlaceholder"
@@ -37,8 +48,12 @@ const handleClick = () => {}
 </template>
 
 <style scoped>
+.create-task.active {
+  background: #ffffff;
+}
+
 .create-task input::placeholder {
-  font-size: 12px;
+  font-size: 16px;
   font-weight: 400;
   line-height: 24px;
   text-align: left;
@@ -56,14 +71,28 @@ const handleClick = () => {}
 }
 
 .create-task input {
-  width: 451px;
-  height: 36px;
-  position: absolute;
-  top: 576px;
-  left: 286px;
+  width: 550px;
+  height: 20px;
   gap: 0;
   border-radius: 12px;
-  background: #e6e6e6;
+  background: #ededed;
+  padding: 10px;
+  border: 0 solid #ccc;
+}
+
+.create-task {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 30px;
+  width: 780px;
+  margin-left: 5px;
+  margin-right: 5px;
+  height: 50px;
+  border-radius: 12px;
+  background: #ededed;
   padding: 10px;
   border: 0 solid #ccc;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
@@ -73,22 +102,18 @@ const handleClick = () => {}
 }
 
 .addTaskButton {
-  width: 71px;
-  height: 23px;
-  position: absolute;
-  top: 592px;
-  left: 670px;
+  height: 30px;
+  width: 100px;
+  font-size: 16px;
   border: 0 solid #ccc;
   border-radius: 6px;
-  background-color: #ededed;
+  background-color: #ffffff;
+  cursor: pointer;
 }
 
 .checkButton {
-  width: 18px;
-  height: 18px;
-  position: absolute;
-  top: 594px;
-  left: 290px;
+  width: 25px;
+  height: 25px;
   background-color: #ededed;
   border: 0 solid #ccc;
   border-radius: 6px;
