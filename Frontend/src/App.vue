@@ -4,6 +4,8 @@ import Task from '@/components/Task.vue'
 import CreateTask from '@/components/CreateTask.vue'
 import { OhVueIcon, addIcons } from 'oh-vue-icons'
 import { IoEyeOutline } from 'oh-vue-icons/icons'
+import { createApp } from 'vue'
+import App from '@/App.vue'
 
 const encouragement = 'Manage your tasks and stay productive...'
 // addIcons(IoEyeOutline)
@@ -40,7 +42,7 @@ const encouragement = 'Manage your tasks and stay productive...'
 .tasksField {
   height: 500px;
   width: auto;
-  overflow: auto;
+  overflow: visible;
 }
 .encouragement {
   font-size: 18px;

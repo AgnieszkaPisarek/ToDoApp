@@ -5,7 +5,6 @@ function fun() {
   const optionsMenu = document.getElementById('options-menu')
 
   if (optionsMenu) {
-    optionsMenu.classList.add('style')
     optionsMenu.style.visibility = 'visible'
   }
 }
@@ -18,10 +17,9 @@ function fun() {
       <div class="dot"></div>
       <div class="dot"></div>
     </div>
-  </div>
-
-  <div class="options-menu" id="options-menu">
-    <div class="delete">Delete task</div>
+    <div class="options-menu" id="options-menu">
+      <div class="delete">Delete task</div>
+    </div>
   </div>
 </template>
 
@@ -29,10 +27,25 @@ function fun() {
 .container {
   display: flex;
   place-items: center;
+  position: relative;
 }
 
 .options-menu {
   visibility: hidden;
+  position: absolute;
+  top: -8px;
+  left: 12px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  width: 120px;
+  height: 40px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  border: 1px solid #ccc;
+  z-index: 100;
 }
 
 .delete {
@@ -45,19 +58,7 @@ function fun() {
   cursor: pointer;
 }
 
-.style {
-  position: absolute;
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
-  width: 120px;
-  height: 40px;
-  background-color: #ffffff;
-  border-radius: 12px;
-  border: 1px solid #ccc;
-  z-index: 100;
+.pop-over {
 }
 
 .dot {
