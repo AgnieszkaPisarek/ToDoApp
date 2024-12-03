@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import CreateTask from '@/components/CreateTask.vue'
-
 function fun() {
   const optionsMenu = document.getElementById('options-menu')
 
@@ -56,9 +54,6 @@ function fun() {
 .options-menu:hover {
   background-color: #e6e6e6;
   cursor: pointer;
-}
-
-.pop-over {
 }
 
 .dot {
