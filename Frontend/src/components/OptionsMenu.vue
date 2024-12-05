@@ -2,9 +2,12 @@
 import { ref } from 'vue'
 
 const popOverVisible = ref(false)
-function onClickMenu(event: Event) {
+function onClickMenu() {
   popOverVisible.value = !popOverVisible.value
-  console.log('pop over visible')
+}
+
+function clickDelete() {
+  popOverVisible.value = !popOverVisible.value
 }
 </script>
 
@@ -15,7 +18,7 @@ function onClickMenu(event: Event) {
       <div class="dot"></div>
       <div class="dot"></div>
     </div>
-    <div class="options-menu" v-if="popOverVisible">
+    <div class="options-menu" v-if="popOverVisible" @click="clickDelete">
       <div class="delete">Delete task</div>
     </div>
   </div>
