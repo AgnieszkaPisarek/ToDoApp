@@ -1,21 +1,21 @@
 <script setup lang="ts">
-function fun() {
-  const optionsMenu = document.getElementById('options-menu')
+import { ref } from 'vue'
 
-  if (optionsMenu) {
-    optionsMenu.style.visibility = 'visible'
-  }
+const popOverVisible = ref(false)
+function onClickMenu(event: Event) {
+  popOverVisible.value = !popOverVisible.value
+  console.log('pop over visible')
 }
 </script>
 
 <template>
   <div class="container">
-    <div class="menu-sign" @click="fun()">
+    <div class="menu-sign" @click="onClickMenu">
       <div class="dot"></div>
       <div class="dot"></div>
       <div class="dot"></div>
     </div>
-    <div class="options-menu" id="options-menu">
+    <div class="options-menu" v-if="popOverVisible">
       <div class="delete">Delete task</div>
     </div>
   </div>
@@ -28,8 +28,11 @@ function fun() {
   position: relative;
 }
 
+.popOverVisible {
+  visibility: visible;
+}
+
 .options-menu {
-  visibility: hidden;
   position: absolute;
   top: -8px;
   left: 12px;
