@@ -20,7 +20,7 @@ const encouragement = 'Manage your tasks and stay productive...'
       <RandomText />
       <div class="encouragement">{{ encouragement }}</div>
       <div class="tasksField">
-        <Task />
+        <Task class="task1" />
         <Task />
         <Task />
         <Task />
