@@ -8,7 +8,8 @@ import { ref } from 'vue'
 import App from '@/App.vue'
 
 const encouragement = 'Manage your tasks and stay productive...'
-const tasks = ref(['task1', 'task2', 'task3', 'task4'])
+
+const tasks = ref([{ index: 0, task: 'wyjsc z psem' }])
 // addIcons(IoEyeOutline)
 // const app = createApp(App)
 // app.component('v-icon', OhVueIcon)
@@ -16,11 +17,11 @@ const tasks = ref(['task1', 'task2', 'task3', 'task4'])
 const handleDeleteTask = (index: number) => {
   console.log(index)
   tasks.value.splice(index, 1)
+  console.log(tasks)
 }
 
 const handleAddTask = (task: string) => {
-  console.log(task)
-  tasks.value.push('task' + tasks.value.length)
+  tasks.value.push({ index: tasks.value.length, task: task })
 }
 </script>
 
@@ -31,8 +32,7 @@ const handleAddTask = (task: string) => {
       <div class="encouragement">{{ encouragement }}</div>
       <Task
         v-for="(task, index) in tasks"
-        :key="index"
-        :task="task"
+        :task="task.task"
         :index="index"
         @deleteTaskEvent="handleDeleteTask"
       >
