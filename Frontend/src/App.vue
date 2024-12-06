@@ -30,13 +30,15 @@ const handleAddTask = (task: string) => {
     <section class="greeting">
       <RandomText />
       <div class="encouragement">{{ encouragement }}</div>
-      <Task
-        v-for="(task, index) in tasks"
-        :task="task.task"
-        :index="index"
-        @deleteTaskEvent="handleDeleteTask"
-      >
-      </Task>
+      <div class="tasksField">
+        <Task
+          v-for="(task, index) in tasks"
+          :task="task.task"
+          :index="index"
+          @deleteTaskEvent="handleDeleteTask"
+        >
+        </Task>
+      </div>
       <CreateTask @addTaskEvent="handleAddTask" />
       <v-icon name="IoEyeOutline" />
       <div class="completed">Completed 0 of 4</div>
@@ -53,6 +55,12 @@ const handleAddTask = (task: string) => {
 
 .encouragement {
   font-size: 18px;
+}
+
+.tasksField {
+  height: 600px;
+  width: auto;
+  overflow: auto;
 }
 
 .completed {
