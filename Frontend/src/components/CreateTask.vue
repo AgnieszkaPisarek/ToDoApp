@@ -4,12 +4,12 @@ import { ref, defineEmits } from 'vue'
 const createNewTaskText = ref('Write a new task')
 const input = ref('')
 const isFocused = ref(false)
-const emit = defineEmits<{
-  (event: 'addTaskEvent'): void;
-}>()
+const container = document.getElementById('thingToDo')
 
+const emit = defineEmits<{
+  (event: 'addTaskEvent', task: string): void;
+}>()
 const clearPlaceholder = () => {
-  const container = document.getElementById('thingToDo')
   if (container) {
     container.classList.add('active')
   }
@@ -18,16 +18,15 @@ const clearPlaceholder = () => {
 }
 const restorePlaceholder = () => {
   const container = document.getElementById('thingToDo')
-  if (input.value === '') {
     createNewTaskText.value = 'Write a new task'
-  }
+
   if (container) {
     container.classList.remove('active')
   }
 }
 
 const handleClick = () => {
-  emit("addTaskEvent")
+  emit("addTaskEvent", input.value)
   isFocused.value = false
 }
 </script>
