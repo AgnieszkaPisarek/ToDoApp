@@ -48,7 +48,7 @@ function clickCheck() {
       <input id="checkButton" type="checkbox" @click="clickCheck"></input>
       <input class="thingToDo" type="text" v-model="input" ref="task"/>
       <input class="date" type="date" />
-      <OptionsMenu :taskIndex="index" @click="handleDeleteClick"/>
+      <OptionsMenu :taskIndex="index" @handleDeleteEvent="handleDeleteClick"/>
     </div>
   </section>
 </template>
