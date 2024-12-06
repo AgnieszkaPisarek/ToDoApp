@@ -12,6 +12,8 @@ const encouragement = 'Manage your tasks and stay productive...'
 // const app = createApp(App)
 // app.component('v-icon', OhVueIcon)
 // app.mount('#app')
+
+function deleteTask(id: number) {}
 </script>
 
 <template>
@@ -20,7 +22,7 @@ const encouragement = 'Manage your tasks and stay productive...'
       <RandomText />
       <div class="encouragement">{{ encouragement }}</div>
       <div class="tasksField">
-        <Task class="task1" />
+        <Task />
         <Task />
         <Task />
         <Task />

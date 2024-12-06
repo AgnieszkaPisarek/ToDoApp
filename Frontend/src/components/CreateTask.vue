@@ -14,7 +14,6 @@ const clearPlaceholder = () => {
 }
 const restorePlaceholder = () => {
   const container = document.getElementById('thingToDo')
-  isFocused.value = false
   if (input.value === '') {
     createNewTaskText.value = 'Write a new task'
   }
@@ -25,7 +24,10 @@ const restorePlaceholder = () => {
 
 onMounted(() => {})
 
-const handleClick = () => {}
+const handleClick = () => {
+  console.log("Dziala")
+  isFocused.value = false
+}
 </script>
 <template>
   <section class="create-task" :class="{'focused': isFocused}" >

@@ -1,13 +1,16 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 
+const task = document.getElementById('.task')
 const popOverVisible = ref(false)
 function onClickMenu() {
   popOverVisible.value = !popOverVisible.value
 }
 
 function clickDelete() {
-  popOverVisible.value = !popOverVisible.value
+  // popOverVisible.value = !popOverVisible.value
+  if (task) {
+  }
 }
 </script>
 
@@ -29,10 +32,6 @@ function clickDelete() {
   display: flex;
   place-items: center;
   position: relative;
-}
-
-.popOverVisible {
-  visibility: visible;
 }
 
 .options-menu {
