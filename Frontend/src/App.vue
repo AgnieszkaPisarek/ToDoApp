@@ -13,6 +13,10 @@ const tasks = ref(['task1', 'task2', 'task3', 'task4'])
 // const app = createApp(App)
 // app.component('v-icon', OhVueIcon)
 // app.mount('#app')
+const handleDeleteTask = (index: number) => {
+  console.log('lol')
+  tasks.value.splice(index, 1)
+}
 
 const handleAddTask = (task: string) => {
   console.log(task)
@@ -25,7 +29,14 @@ const handleAddTask = (task: string) => {
     <section class="greeting">
       <RandomText />
       <div class="encouragement">{{ encouragement }}</div>
-      <Task v-for="(task, index) in tasks" :key="index" :task="task"> </Task>
+      <Task
+        v-for="(task, index) in tasks"
+        :key="index"
+        :task="task"
+        :index="index"
+        @deleteTaskEvent="handleDeleteTask"
+      >
+      </Task>
       <CreateTask @addTaskEvent="handleAddTask" />
       <v-icon name="IoEyeOutline" />
       <div class="completed">Completed 0 of 4</div>

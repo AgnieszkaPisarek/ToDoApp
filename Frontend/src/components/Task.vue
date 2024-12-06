@@ -1,9 +1,28 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, defineProps, defineEmits } from 'vue'
 import OptionsMenu from '@/components/OptionsMenu.vue'
 const input = ref('')
 const isChecked = ref(false)
 const task = ref<HTMLInputElement | null>(null)
+
+const props = defineProps({
+  task: {
+    type: String,
+    required: true
+  },
+  index: {
+    type: Number,
+    required: true
+  }
+})
+
+const emit = defineEmits<{
+  (event: 'deleteTaskEvent', index: number): void
+}>()
+
+const handleDeleteClick = () => {
+  emit('deleteTaskEvent', props.index)
+}
 
 const checkButton = document.querySelector('.checkButton')
 if (checkButton) {
@@ -29,7 +48,7 @@ function clickCheck() {
       <input id="checkButton" type="checkbox" @click="clickCheck"></input>
       <input class="thingToDo" type="text" v-model="input" ref="task"/>
       <input class="date" type="date" />
-      <OptionsMenu />
+      <OptionsMenu :taskIndex="index" @click="handleDeleteClick"/>
     </div>
   </section>
 </template>
