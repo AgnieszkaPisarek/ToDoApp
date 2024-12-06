@@ -39,7 +39,7 @@ function clickCheck() {
     task.value.style.textDecoration = "none";
   }
 }
-
+input.value = props.task
 </script>
 
 <template>
