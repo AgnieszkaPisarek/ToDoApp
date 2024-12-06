@@ -1,16 +1,18 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { defineEmits, ref } from 'vue'
 
-const task = document.getElementById('.task')
 const popOverVisible = ref(false)
 function onClickMenu() {
   popOverVisible.value = !popOverVisible.value
 }
 
+const emit = defineEmits<{
+  (event: 'deleteTaskEvent', task: number): void
+}>()
+
 function clickDelete() {
-  // popOverVisible.value = !popOverVisible.value
-  if (task) {
-  }
+  popOverVisible.value = !popOverVisible.value
+  emit('deleteTaskEvent', 2)
 }
 </script>
 
