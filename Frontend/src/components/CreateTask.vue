@@ -27,6 +27,7 @@ const restorePlaceholder = () => {
 
 const handleClick = () => {
   emit("addTaskEvent", input.value)
+  input.value = ''
   isFocused.value = false
 }
 </script>
