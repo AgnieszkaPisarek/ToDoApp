@@ -7,12 +7,12 @@ function onClickMenu() {
 }
 
 const emit = defineEmits<{
-  (event: 'deleteTaskEvent', task: number): void
+  (event: 'handleDeleteEvent'): void
 }>()
 
 function clickDelete() {
   popOverVisible.value = !popOverVisible.value
-  emit('deleteTaskEvent', 2)
+  emit('handleDeleteEvent')
 }
 </script>
 

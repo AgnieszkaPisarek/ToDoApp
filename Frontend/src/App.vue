@@ -14,7 +14,7 @@ const tasks = ref(['task1', 'task2', 'task3', 'task4'])
 // app.component('v-icon', OhVueIcon)
 // app.mount('#app')
 const handleDeleteTask = (index: number) => {
-  console.log('lol')
+  console.log(index)
   tasks.value.splice(index, 1)
 }
 
