@@ -14,6 +14,9 @@ const encouragement = 'Manage your tasks and stay productive...'
 // app.mount('#app')
 
 function deleteTask(id: number) {}
+const handleAddTask = () => {
+  console.log('Dziala')
+}
 </script>
 
 <template>
@@ -28,7 +31,7 @@ function deleteTask(id: number) {}
         <Task />
       </div>
 
-      <CreateTask />
+      <CreateTask @addTaskEvent="handleAddTask" />
       <v-icon name="IoEyeOutline" />
       <div class="completed">Completed 0 of 4</div>
     </section>

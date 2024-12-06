@@ -1,9 +1,13 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { ref, defineEmits } from 'vue'
 
 const createNewTaskText = ref('Write a new task')
 const input = ref('')
 const isFocused = ref(false)
+const emit = defineEmits<{
+  (event: 'addTaskEvent'): void;
+}>()
+
 const clearPlaceholder = () => {
   const container = document.getElementById('thingToDo')
   if (container) {
@@ -22,10 +26,8 @@ const restorePlaceholder = () => {
   }
 }
 
-onMounted(() => {})
-
 const handleClick = () => {
-  console.log("Dziala")
+  emit("addTaskEvent")
   isFocused.value = false
 }
 </script>
