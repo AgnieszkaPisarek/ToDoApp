@@ -22,7 +22,24 @@ const handleDeleteTask = (index: number) => {
 }
 
 const handleAddTask = (task: string) => {
-  tasks.value.push({ index: tasks.value.length, task: task, date: '' })
+  const currentDate = new Date()
+  let year = currentDate.getFullYear()
+  let month = currentDate.getMonth() + 1
+  let day = currentDate.getDate()
+
+  let formattedDay
+  if (day < 10) {
+    formattedDay = ('0' + day).toString()
+  } else {
+    formattedDay = day.toString()
+  }
+  const currentDateInProperFormat = year + '-' + month + '-' + formattedDay
+
+  tasks.value.push({
+    index: tasks.value.length,
+    task: task,
+    date: currentDateInProperFormat.toString(),
+  })
 }
 </script>
 
