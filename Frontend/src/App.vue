@@ -9,15 +9,13 @@ import App from '@/App.vue'
 
 const encouragement = 'Manage your tasks and stay productive...'
 
-const tasks = ref([{ index: 0, task: 'wyjsc z psem' }])
+const tasks = ref([{ index: 0, task: 'Take a dog for a walk' }])
 // addIcons(IoEyeOutline)
 // const app = createApp(App)
 // app.component('v-icon', OhVueIcon)
 // app.mount('#app')
 const handleDeleteTask = (index: number) => {
-  console.log(index)
   tasks.value.splice(index, 1)
-  console.log(tasks)
 }
 
 const handleAddTask = (task: string) => {
@@ -32,9 +30,9 @@ const handleAddTask = (task: string) => {
       <div class="encouragement">{{ encouragement }}</div>
       <div class="tasksField">
         <Task
-          v-for="(task, index) in tasks"
+          v-for="task in tasks"
           :task="task.task"
-          :index="index"
+          :index="task.index"
           @deleteTaskEvent="handleDeleteTask"
         >
         </Task>
@@ -59,7 +57,7 @@ const handleAddTask = (task: string) => {
 
 .tasksField {
   height: 600px;
-  width: auto;
+  width: 900px;
   overflow: auto;
 }
 
