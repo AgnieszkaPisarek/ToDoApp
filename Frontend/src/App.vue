@@ -7,23 +7,27 @@ import { ref } from 'vue'
 
 const encouragement = 'Manage your tasks and stay productive...'
 const tasks = ref([
-  { index: 0, task: 'Take a dog for a walk', date: '2024-12-12', completed: false },
+  {
+    index: 0,
+    task: 'Take a dog for a walk',
+    date: '2024-12-12',
+    completed: false,
+  },
 ])
-
 
 const handleDeleteTask = (index: number) => {
   tasks.value = tasks.value.filter((value) => value.index !== index)
 }
 
 const handleStateOfTheTask = (index: number) => {
-  const task = tasks.value.find((value) => value.index === index);
-  if(task)  {
+  const task = tasks.value.find((value) => value.index === index)
+  if (task) {
     task.completed = !task.completed
     task.date = getDate()
   }
 }
 
-const getDate = ()  => {
+const getDate = () => {
   const currentDate = new Date()
   let year = currentDate.getFullYear()
   let month = currentDate.getMonth() + 1
@@ -39,13 +43,12 @@ const getDate = ()  => {
 }
 
 const handleAddTask = (task: string) => {
-
   const currentDateInProperFormat = getDate()
   tasks.value.push({
     index: tasks.value.length,
     task: task,
     date: currentDateInProperFormat,
-    completed: false
+    completed: false,
   })
 }
 </script>
@@ -56,23 +59,27 @@ const handleAddTask = (task: string) => {
       <RandomText />
       <div class="encouragement">{{ encouragement }}</div>
     </section>
-      <div class="tasksField">
-        <Task
-          v-model="task.task"
-          v-for="task in tasks"
-          :task="task.task"
-          :index="task.index"
-          :date="task.date"
-          :completed="task.completed"
-          @deleteTaskEvent="handleDeleteTask"
-          @markAsCompleteEvent="handleStateOfTheTask"
-        />
+    <div class="tasksField">
+      <Task
+        v-model="task.task"
+        v-for="task in tasks"
+        :task="task.task"
+        :index="task.index"
+        :date="task.date"
+        :completed="task.completed"
+        @deleteTaskEvent="handleDeleteTask"
+        @markAsCompleteEvent="handleStateOfTheTask"
+      />
+    </div>
+    <CreateTask @addTaskEvent="handleAddTask" />
+    <div class="completed">
+      <Icon icon="ic:sharp-remove-red-eye" class="icon" color="#494955" />
+      <div class="completedText">
+        Completed
+        {{ tasks.filter((task) => task.completed === true).length }} of
+        {{ tasks.length }}
       </div>
-      <CreateTask @addTaskEvent="handleAddTask" />
-      <div class="completed">
-        <Icon icon="ic:sharp-remove-red-eye" class="icon" inline: true color="#494955"/>
-        <div class="completedText">Completed {{ tasks.filter((task) => task.completed === true).length }} of {{ tasks.length }}</div>
-      </div>
+    </div>
   </main>
 </template>
 

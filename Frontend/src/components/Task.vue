@@ -9,29 +9,29 @@ let date
 const props = defineProps({
   task: {
     type: String,
-    required: true
+    required: true,
   },
   index: {
     type: Number,
-    required: true
+    required: true,
   },
   date: {
     type: String,
-    required: true
+    required: true,
   },
   completed: {
     type: Boolean,
-    required: true
-  }
+    required: true,
+  },
 })
 
-if(props.completed) {
+if (props.completed) {
   clickCheck()
 }
 
 date = props.date
 const emit = defineEmits<{
-  (event: 'deleteTaskEvent', index: number): void,
+  (event: 'deleteTaskEvent', index: number): void
   (event: 'markAsCompleteEvent', index: number): void
 }>()
 
@@ -47,11 +47,11 @@ if (checkButton) {
 }
 
 function clickCheck() {
-  isChecked.value = !isChecked.value;
-  if(isChecked.value && task.value) {
-    task.value.style.textDecoration = "line-through";
-  } else if(task.value) {
-    task.value.style.textDecoration = "none";
+  isChecked.value = !isChecked.value
+  if (isChecked.value && task.value) {
+    task.value.style.textDecoration = 'line-through'
+  } else if (task.value) {
+    task.value.style.textDecoration = 'none'
   }
   emit('markAsCompleteEvent', props.index)
 }
@@ -60,10 +60,10 @@ function clickCheck() {
 <template>
   <section class="task">
     <div class="task-container">
-      <input id="checkButton" type="checkbox" @click="clickCheck"></input>
-      <input class="thingToDo" type="text" v-model="input" ref="task"/>
-      <input class="date" type="date" v-model="date" ref="date"/>
-      <OptionsMenu :taskIndex="index" @handleDeleteEvent="handleDeleteClick"/>
+      <input id="checkButton" type="checkbox" @click="clickCheck" />
+      <input class="thingToDo" type="text" v-model="input" ref="task" />
+      <input class="date" type="date" v-model="date" ref="date" />
+      <OptionsMenu :taskIndex="index" @handleDeleteEvent="handleDeleteClick" />
     </div>
   </section>
 </template>
