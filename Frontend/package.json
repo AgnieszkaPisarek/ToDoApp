@@ -16,6 +16,7 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
+    "@iconify/vue": "^4.2.0",
     "oh-vue-icons": "^1.0.0-rc3",
     "pinia": "^2.2.6",
     "vue": "^3.5.12",

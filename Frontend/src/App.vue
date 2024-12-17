@@ -1,27 +1,29 @@
 <script setup lang="ts">
+import { Icon } from '@iconify/vue'
 import RandomText from '@/components/RandomText.vue'
 import Task from '@/components/Task.vue'
 import CreateTask from '@/components/CreateTask.vue'
-import { OhVueIcon, addIcons } from 'oh-vue-icons'
-import { IoEyeOutline } from 'oh-vue-icons/icons'
 import { ref } from 'vue'
-import App from '@/App.vue'
 
 const encouragement = 'Manage your tasks and stay productive...'
-
 const tasks = ref([
-  { index: 0, task: 'Take a dog for a walk', date: '2024-12-12' },
+  { index: 0, task: 'Take a dog for a walk', date: '2024-12-12', completed: false },
 ])
-// addIcons(IoEyeOutline)
-// const app = createApp(App)
-// app.component('v-icon', OhVueIcon)
-// app.mount('#app')
+
+
 const handleDeleteTask = (index: number) => {
   tasks.value = tasks.value.filter((value) => value.index !== index)
-  console.log(tasks.value)
 }
 
-const handleAddTask = (task: string) => {
+const handleStateOfTheTask = (index: number) => {
+  const task = tasks.value.find((value) => value.index === index);
+  if(task)  {
+    task.completed = !task.completed
+    task.date = getDate()
+  }
+}
+
+const getDate = ()  => {
   const currentDate = new Date()
   let year = currentDate.getFullYear()
   let month = currentDate.getMonth() + 1
@@ -33,21 +35,27 @@ const handleAddTask = (task: string) => {
   } else {
     formattedDay = day.toString()
   }
-  const currentDateInProperFormat = year + '-' + month + '-' + formattedDay
+  return (year + '-' + month + '-' + formattedDay).toString()
+}
 
+const handleAddTask = (task: string) => {
+
+  const currentDateInProperFormat = getDate()
   tasks.value.push({
     index: tasks.value.length,
     task: task,
-    date: currentDateInProperFormat.toString(),
+    date: currentDateInProperFormat,
+    completed: false
   })
 }
 </script>
 
 <template>
-  <main class="App">
+  <main class="app">
     <section class="greeting">
       <RandomText />
       <div class="encouragement">{{ encouragement }}</div>
+    </section>
       <div class="tasksField">
         <Task
           v-model="task.task"
@@ -55,19 +63,21 @@ const handleAddTask = (task: string) => {
           :task="task.task"
           :index="task.index"
           :date="task.date"
+          :completed="task.completed"
           @deleteTaskEvent="handleDeleteTask"
-        >
-        </Task>
+          @markAsCompleteEvent="handleStateOfTheTask"
+        />
       </div>
       <CreateTask @addTaskEvent="handleAddTask" />
-      <v-icon name="IoEyeOutline" />
-      <div class="completed">Completed 0 of 4</div>
-    </section>
+      <div class="completed">
+        <Icon icon="ic:sharp-remove-red-eye" class="icon" inline: true color="#494955"/>
+        <div class="completedText">Completed {{ tasks.filter((task) => task.completed === true).length }} of {{ tasks.length }}</div>
+      </div>
   </main>
 </template>
 
 <style scoped>
-.App {
+.app {
   margin: 50px auto auto;
   box-sizing: border-box;
   height: 900px;
@@ -85,6 +95,9 @@ const handleAddTask = (task: string) => {
     border-color 0.3s ease;
 }
 
+.icon {
+  margin-top: 3px;
+}
 .encouragement {
   font-size: 18px;
 }
@@ -96,6 +109,12 @@ const handleAddTask = (task: string) => {
 }
 
 .completed {
+  margin-left: 15px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.completedText {
   margin-top: 5px;
   margin-left: 10px;
   color: #494955;
