@@ -4,7 +4,7 @@ import OptionsMenu from '@/components/OptionsMenu.vue'
 const input = defineModel()
 const isChecked = ref(false)
 const task = ref<HTMLInputElement | null>(null)
-let date = ""
+let date
 
 const props = defineProps({
   task: {
@@ -18,11 +18,21 @@ const props = defineProps({
   date: {
     type: String,
     required: true
+  },
+  completed: {
+    type: Boolean,
+    required: true
   }
 })
+
+if(props.completed) {
+  clickCheck()
+}
+
 date = props.date
 const emit = defineEmits<{
-  (event: 'deleteTaskEvent', index: number): void
+  (event: 'deleteTaskEvent', index: number): void,
+  (event: 'markAsCompleteEvent', index: number): void
 }>()
 
 const handleDeleteClick = () => {
@@ -43,6 +53,7 @@ function clickCheck() {
   } else if(task.value) {
     task.value.style.textDecoration = "none";
   }
+  emit('markAsCompleteEvent', props.index)
 }
 </script>
 
@@ -77,7 +88,7 @@ function clickCheck() {
   margin-right: 5px;
   margin-left: 5px;
   width: 780px;
-  height: 50px;
+  height: 52px;
   border-radius: 12px;
   background: #ffffff;
   padding: 10px;
