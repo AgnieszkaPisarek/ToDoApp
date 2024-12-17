@@ -7,7 +7,13 @@ import { ref } from 'vue'
 import dayjs from "dayjs";
 
 const encouragement = 'Manage your tasks and stay productive...'
-const tasks = ref([
+type Task = {
+  index: number,
+  task: string,
+  date: string,
+  completed: boolean
+}
+const tasks = ref<Task[]>([
   {
     index: 0,
     task: 'Take a dog for a walk',
