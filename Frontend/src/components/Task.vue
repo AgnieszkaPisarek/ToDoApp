@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { ref, defineProps, defineEmits } from 'vue'
 import OptionsMenu from '@/components/OptionsMenu.vue'
-const input = defineModel()
+const input = defineModel('description')
+const date = defineModel('date')
 const isChecked = ref(false)
 const task = ref<HTMLInputElement | null>(null)
-let date
 
 const props = defineProps({
   task: {
@@ -29,7 +29,6 @@ if (props.completed) {
   clickCheck()
 }
 
-date = props.date
 const emit = defineEmits<{
   (event: 'deleteTaskEvent', index: number): void
   (event: 'markAsCompleteEvent', index: number): void
