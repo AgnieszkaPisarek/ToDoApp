@@ -7,7 +7,7 @@ const isFocused = ref(false)
 const container = document.getElementById('thingToDo')
 
 const emit = defineEmits<{
-  (event: 'addTaskEvent', task: string): void;
+  (event: 'addTaskEvent', task: string): void
 }>()
 const clearPlaceholder = () => {
   if (container) {
@@ -18,7 +18,7 @@ const clearPlaceholder = () => {
 }
 const restorePlaceholder = () => {
   const container = document.getElementById('thingToDo')
-    createNewTaskText.value = 'Write a new task'
+  createNewTaskText.value = 'Write a new task'
 
   if (container) {
     container.classList.remove('active')
@@ -26,14 +26,14 @@ const restorePlaceholder = () => {
 }
 
 const handleClick = () => {
-  emit("addTaskEvent", input.value)
+  emit('addTaskEvent', input.value)
   input.value = ''
   isFocused.value = false
 }
 </script>
 <template>
-  <section class="create-task" :class="{'focused': isFocused}" >
-    <input v-if="isFocused" id="checkButton" type="checkbox"></input>
+  <section class="create-task" :class="{ focused: isFocused }">
+    <input v-if="isFocused" id="checkButton" type="checkbox" />
     <input
       v-model="input"
       :placeholder="createNewTaskText"
@@ -41,14 +41,19 @@ const handleClick = () => {
       @focus="clearPlaceholder"
       @blur="restorePlaceholder"
     />
-    <button v-if="isFocused" class="addTaskButton" :class="{'focused': isFocused}" @click="handleClick">
+    <button
+      v-if="isFocused"
+      class="addTaskButton"
+      :class="{ focused: isFocused }"
+      @click="handleClick"
+    >
       Add Task
     </button>
   </section>
 </template>
 
 <style scoped>
-.create-task.focused  {
+.create-task.focused {
   background: #ffffff;
 }
 
@@ -121,7 +126,7 @@ const handleClick = () => {
   cursor: pointer;
 }
 
-.addTaskButton.focused  {
+.addTaskButton.focused {
   background: #ededed;
 }
 
