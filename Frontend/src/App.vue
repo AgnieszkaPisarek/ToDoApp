@@ -9,14 +9,14 @@ import dayjs from "dayjs";
 const encouragement = 'Manage your tasks and stay productive...'
 type Task = {
   index: number,
-  description: string,
+  task: string,
   date: string,
   completed: boolean
 }
 const tasks = ref<Task[]>([
   {
     index: 0,
-    description: 'Take a dog for a walk',
+    task: 'Take a dog for a walk',
     date: '2024-12-12',
     completed: false,
   },
@@ -43,7 +43,7 @@ const handleAddTask = (task: string) => {
   const currentDateInProperFormat = getDate()
   tasks.value.push({
     index: tasks.value.length,
-    description: task,
+    task: task,
     date: currentDateInProperFormat,
     completed: false,
   })
@@ -58,11 +58,11 @@ const handleAddTask = (task: string) => {
     </section>
     <div class="tasksField">
       <Task
-        v-model:description="task.description"
-        v-model:date="task.date"
+        v-model="task.task"
         v-for="task in tasks"
-        :task="task.description"
+        :task="task.task"
         :index="task.index"
+        :date="task.date"
         :completed="task.completed"
         @deleteTaskEvent="handleDeleteTask"
         @markAsCompleteEvent="handleStateOfTheTask"
