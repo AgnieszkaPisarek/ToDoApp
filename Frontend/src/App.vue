@@ -4,6 +4,7 @@ import RandomText from '@/components/RandomText.vue'
 import Task from '@/components/Task.vue'
 import CreateTask from '@/components/CreateTask.vue'
 import { ref } from 'vue'
+import dayjs from "dayjs";
 
 const encouragement = 'Manage your tasks and stay productive...'
 const tasks = ref([
@@ -28,18 +29,8 @@ const handleStateOfTheTask = (index: number) => {
 }
 
 const getDate = () => {
-  const currentDate = new Date()
-  let year = currentDate.getFullYear()
-  let month = currentDate.getMonth() + 1
-  let day = currentDate.getDate()
-
-  let formattedDay
-  if (day < 10) {
-    formattedDay = ('0' + day).toString()
-  } else {
-    formattedDay = day.toString()
-  }
-  return (year + '-' + month + '-' + formattedDay).toString()
+  let date = dayjs(new Date());
+  return date.format("YYYY-MM-DD")
 }
 
 const handleAddTask = (task: string) => {
