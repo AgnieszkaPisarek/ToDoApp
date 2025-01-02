@@ -18,7 +18,7 @@ const tasks = ref<Task[]>([
     index: 0,
     task: 'Take a dog for a walk',
     date: '2024-12-12',
-    completed: false,
+    completed: true,
   },
 ])
 
@@ -44,7 +44,7 @@ const handleAddTask = (task: string) => {
     index: tasks.value.length,
     task: task,
     date: currentDateInProperFormat,
-    completed: true,
+    completed: false,
   })
 }
 </script>
