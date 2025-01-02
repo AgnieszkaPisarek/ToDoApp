@@ -30,7 +30,6 @@ const handleStateOfTheTask = (index: number) => {
   const task = tasks.value.find((value) => value.index === index)
   if (task) {
     task.completed = !task.completed
-    task.date = getDate()
   }
 }
 
@@ -45,7 +44,7 @@ const handleAddTask = (task: string) => {
     index: tasks.value.length,
     task: task,
     date: currentDateInProperFormat,
-    completed: false,
+    completed: true,
   })
 }
 </script>
