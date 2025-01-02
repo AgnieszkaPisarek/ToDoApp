@@ -29,10 +29,20 @@ isChecked.value = props.completed
 const emit = defineEmits<{
   (event: 'deleteTaskEvent', index: number): void
   (event: 'markAsCompleteEvent', index: number): void
+  (event: 'changeTaskDescription', index: number, description: string): void
+  (event: 'changeDate', index: number, date: string): void
 }>()
 
 const handleDeleteClick = () => {
   emit('deleteTaskEvent', props.index)
+}
+
+const handleChangeOfTaskDescription = () => {
+  emit('changeTaskDescription', props.index, input.value as string)
+}
+
+const handleChangeOfDate = () => {
+  emit('changeDate', props.index, date.value)
 }
 
 const checkButton = document.querySelector('.checkButton')
@@ -51,9 +61,9 @@ function clickCheck() {
 <template>
   <section class="task">
     <div class="task-container">
-      <input id="checkButton" type="checkbox" v-model="isChecked" v-on="clickCheck" />
-      <input class="thingToDo" type="text" v-model="input" ref="task" :style="{ textDecoration: isChecked ? 'line-through' : 'none' }" />
-      <input class="date" type="date" v-model="date"/>
+      <input id="checkButton" type="checkbox" v-model="isChecked" @click="clickCheck" />
+      <input class="thingToDo" type="text" v-model="input" ref="task" @input="handleChangeOfTaskDescription" :style="{ textDecoration: isChecked ? 'line-through' : 'none' }" />
+      <input class="date" type="date" @change="handleChangeOfDate" v-model="date"/>
       <OptionsMenu :taskIndex="index" @handleDeleteEvent="handleDeleteClick" />
     </div>
   </section>
