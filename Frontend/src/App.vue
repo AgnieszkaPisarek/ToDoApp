@@ -38,6 +38,20 @@ const getDate = () => {
   return date.format("YYYY-MM-DD")
 }
 
+const handleChangeOfTheDescription = (index: number, description: string) =>  {
+  const task = tasks.value.find((task) => task.index === index)
+  if (task) {
+    task.task = description
+  }
+}
+
+const handleChangeOfTheDate = (index: number, date: string) =>  {
+  const task = tasks.value.find((task) => task.index === index)
+  if (task) {
+    task.date = date
+  }
+}
+
 const handleAddTask = (task: string) => {
   const currentDateInProperFormat = getDate()
   tasks.value.push({
@@ -65,6 +79,8 @@ const handleAddTask = (task: string) => {
         :completed="task.completed"
         @deleteTaskEvent="handleDeleteTask"
         @markAsCompleteEvent="handleStateOfTheTask"
+        @changeTaskDescription="handleChangeOfTheDescription"
+        @changeDate="handleChangeOfTheDate"
       />
     </div>
     <CreateTask @addTaskEvent="handleAddTask" />
