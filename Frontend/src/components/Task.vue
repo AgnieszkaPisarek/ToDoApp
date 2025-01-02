@@ -4,7 +4,6 @@ import OptionsMenu from '@/components/OptionsMenu.vue'
 const input = defineModel()
 const isChecked = ref(false)
 const task = ref<HTMLInputElement | null>(null)
-let date
 
 const props = defineProps({
   task: {
@@ -25,11 +24,11 @@ const props = defineProps({
   },
 })
 
+const date = ref(props.date)
 if (props.completed) {
   clickCheck()
 }
 
-date = props.date
 const emit = defineEmits<{
   (event: 'deleteTaskEvent', index: number): void
   (event: 'markAsCompleteEvent', index: number): void
@@ -62,7 +61,7 @@ function clickCheck() {
     <div class="task-container">
       <input id="checkButton" type="checkbox" @click="clickCheck" />
       <input class="thingToDo" type="text" v-model="input" ref="task" />
-      <input class="date" type="date" v-model="date" ref="date" />
+      <input class="date" type="date" v-model="date"/>
       <OptionsMenu :taskIndex="index" @handleDeleteEvent="handleDeleteClick" />
     </div>
   </section>
@@ -114,6 +113,7 @@ function clickCheck() {
   width: 550px;
   height: 35px;
   gap: 0;
+  font-size: 16px;
   border-radius: 12px;
   background: #ffffff;
   padding: 10px;
