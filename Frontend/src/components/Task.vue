@@ -3,6 +3,7 @@ import { ref, defineProps, defineEmits } from 'vue'
 import OptionsMenu from '@/components/OptionsMenu.vue'
 const input = defineModel()
 const isChecked = ref(false)
+
 const task = ref<HTMLInputElement | null>(null)
 
 const props = defineProps({
@@ -23,12 +24,8 @@ const props = defineProps({
     required: true,
   },
 })
-
 const date = ref(props.date)
-if (props.completed) {
-  clickCheck()
-}
-
+isChecked.value = props.completed
 const emit = defineEmits<{
   (event: 'deleteTaskEvent', index: number): void
   (event: 'markAsCompleteEvent', index: number): void
@@ -47,11 +44,6 @@ if (checkButton) {
 
 function clickCheck() {
   isChecked.value = !isChecked.value
-  if (isChecked.value && task.value) {
-    task.value.style.textDecoration = 'line-through'
-  } else if (task.value) {
-    task.value.style.textDecoration = 'none'
-  }
   emit('markAsCompleteEvent', props.index)
 }
 </script>
@@ -59,8 +51,8 @@ function clickCheck() {
 <template>
   <section class="task">
     <div class="task-container">
-      <input id="checkButton" type="checkbox" @click="clickCheck" />
-      <input class="thingToDo" type="text" v-model="input" ref="task" />
+      <input id="checkButton" type="checkbox" v-model="isChecked" v-on="clickCheck" />
+      <input class="thingToDo" type="text" v-model="input" ref="task" :style="{ textDecoration: isChecked ? 'line-through' : 'none' }" />
       <input class="date" type="date" v-model="date"/>
       <OptionsMenu :taskIndex="index" @handleDeleteEvent="handleDeleteClick" />
     </div>
