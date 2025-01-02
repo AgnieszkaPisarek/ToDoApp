@@ -85,14 +85,13 @@ const handleAddTask = (task: string) => {
   margin: 50px auto auto;
   box-sizing: border-box;
   height: 900px;
-  width: 1000px;
+  width: 1050px;
   justify-content: center;
   display: flex;
   flex-direction: column;
-  align-items: center;
   border: 0 solid #ccc;
   border-radius: 20px;
-  padding: 10px;
+  padding: 70px 135px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
   transition:
     box-shadow 0.3s ease,
@@ -117,6 +116,7 @@ const handleAddTask = (task: string) => {
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: left;
 }
 .completedText {
   margin-top: 5px;
