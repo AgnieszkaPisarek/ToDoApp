@@ -45,7 +45,7 @@ const handleChangeOfDate = () => {
   emit('changeDate', props.index, date.value)
 }
 
-const checkButton = document.querySelector('.checkButton')
+const checkButton = document.querySelector('.createTaskInput')
 if (checkButton) {
   checkButton.addEventListener('click', () => {
     checkButton.classList.add('taskDoneButton')

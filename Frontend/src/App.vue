@@ -13,14 +13,7 @@ type Task = {
   date: string,
   completed: boolean
 }
-const tasks = ref<Task[]>([
-  {
-    index: 0,
-    task: 'Take a dog for a walk',
-    date: '2024-12-12',
-    completed: true,
-  },
-])
+const tasks = ref<Task[]>([])
 
 const handleDeleteTask = (index: number) => {
   tasks.value = tasks.value.filter((value) => value.index !== index)
