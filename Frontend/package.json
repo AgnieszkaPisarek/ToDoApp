@@ -18,13 +18,18 @@
     "cy:run": "cypress run"
   },
   "dependencies": {
+    "@aacassandra/vue3-progressbar": "^1.0.3",
     "@coreui/vue": "^5.4.1",
     "@iconify/vue": "^4.2.0",
     "dayjs": "^1.11.13",
+    "devextreme-vue": "^24.2.3",
     "oh-vue-icons": "^1.0.0-rc3",
     "pinia": "^2.2.6",
     "vue": "^3.5.12",
-    "vue-router": "^4.4.5"
+    "vue-progressbar": "^0.7.5",
+    "vue-router": "^4.4.5",
+    "vue-simple-progress": "^1.1.1",
+    "vuejs-progress-bar": "^1.2.8"
   },
   "devDependencies": {
     "@tsconfig/node22": "^22.0.0",
