@@ -61,9 +61,26 @@ function clickCheck() {
 <template>
   <section class="task">
     <div class="task-container">
-      <input id="checkButton" type="checkbox" v-model="isChecked" @click="clickCheck" />
-      <input class="thingToDo" type="text" v-model="input" ref="taskInput" @input="handleChangeOfTaskDescription" :style="{ textDecoration: isChecked ? 'line-through' : 'none' }" />
-      <input class="date" type="date" @change="handleChangeOfDate" v-model="date"/>
+      <input
+        id="checkButton"
+        type="checkbox"
+        v-model="isChecked"
+        @click="clickCheck"
+      />
+      <input
+        class="thingToDo"
+        type="text"
+        v-model="input"
+        ref="taskInput"
+        @input="handleChangeOfTaskDescription"
+        :style="{ textDecoration: isChecked ? 'line-through' : 'none' }"
+      />
+      <input
+        class="date"
+        type="date"
+        @change="handleChangeOfDate"
+        v-model="date"
+      />
       <OptionsMenu :taskIndex="index" @handleDeleteEvent="handleDeleteClick" />
     </div>
   </section>
