@@ -16,6 +16,10 @@ jobs:
       - name: Install dependencies
         working-directory: ./Frontend
         run: npm install
+        
+      - name: Run development server
+        working-directory: ./Frontend
+        run: npm run dev
 
       - name: Run Cypress tests
         working-directory: ./Frontend
