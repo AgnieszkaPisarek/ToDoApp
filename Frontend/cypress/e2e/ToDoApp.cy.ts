@@ -74,6 +74,8 @@ describe('Editing and deleting tasks', () => {
     cy.get('input.thingToDo').eq(1).clear()
     cy.get('input.thingToDo').eq(1).type("Feed the cat")
     cy.get('.thingToDo').eq(1).should('have.value', 'Feed the cat')
+    cy.get('.date').eq(1).type('2012-12-12')
+    cy.get('.date').eq(1).should('have.value', '2012-12-12')
   })
 
   //deletes another task and validates deletion
