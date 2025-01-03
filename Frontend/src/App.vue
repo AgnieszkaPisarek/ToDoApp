@@ -5,20 +5,20 @@ import Task from '@/components/TaskContainer.vue'
 import CreateTask from '@/components/CreateTask.vue'
 import ProgressBar from '@/components/ProgressBar.vue'
 import { computed, ref } from 'vue'
-import dayjs from "dayjs";
+import dayjs from 'dayjs'
 
 const encouragement = 'Manage your tasks and stay productive...'
 type Task = {
-  index: number,
-  task: string,
-  date: string,
+  index: number
+  task: string
+  date: string
   completed: boolean
 }
 const tasks = ref<Task[]>([])
 
 const completed = computed(() => {
-  return tasks.value.filter((task) => task.completed).length;
-});
+  return tasks.value.filter((task) => task.completed).length
+})
 
 const handleDeleteTask = (index: number) => {
   tasks.value = tasks.value.filter((value) => value.index !== index)
@@ -32,18 +32,18 @@ const handleStateOfTheTask = (index: number) => {
 }
 
 const getDate = () => {
-  const date = dayjs(new Date());
-  return date.format("YYYY-MM-DD")
+  const date = dayjs(new Date())
+  return date.format('YYYY-MM-DD')
 }
 
-const handleChangeOfTheDescription = (index: number, description: string) =>  {
+const handleChangeOfTheDescription = (index: number, description: string) => {
   const task = tasks.value.find((task) => task.index === index)
   if (task) {
     task.task = description
   }
 }
 
-const handleChangeOfTheDate = (index: number, date: string) =>  {
+const handleChangeOfTheDate = (index: number, date: string) => {
   const task = tasks.value.find((task) => task.index === index)
   if (task) {
     task.date = date
@@ -63,36 +63,36 @@ const handleAddTask = (task: string) => {
 
 <template>
   <main class="frame">
-    <ProgressBar :completedStatus="completed" :numberOfTasks="tasks.length"/>
+    <ProgressBar :completedStatus="completed" :numberOfTasks="tasks.length" />
     <div class="app">
-    <section class="greeting">
-      <RandomText />
-      <div class="encouragement">{{ encouragement }}</div>
-    </section>
-    <div class="tasksField">
-      <Task
-        v-model="task.task"
-        v-for="task in tasks"
-        :key="task.index"
-        :task="task.task"
-        :index="task.index"
-        :date="task.date"
-        :completed="task.completed"
-        @deleteTaskEvent="handleDeleteTask"
-        @markAsCompleteEvent="handleStateOfTheTask"
-        @changeTaskDescription="handleChangeOfTheDescription"
-        @changeDate="handleChangeOfTheDate"
-      />
-    </div>
-    <CreateTask @addTaskEvent="handleAddTask" />
-    <div class="completed">
-      <Icon icon="ic:sharp-remove-red-eye" class="icon" color="#494955" />
-      <div class="completedText">
-        Completed
-        {{ completed }} of
-        {{ tasks.length }}
+      <section class="greeting">
+        <RandomText />
+        <div class="encouragement">{{ encouragement }}</div>
+      </section>
+      <div class="tasksField">
+        <Task
+          v-model="task.task"
+          v-for="task in tasks"
+          :key="task.index"
+          :task="task.task"
+          :index="task.index"
+          :date="task.date"
+          :completed="task.completed"
+          @deleteTaskEvent="handleDeleteTask"
+          @markAsCompleteEvent="handleStateOfTheTask"
+          @changeTaskDescription="handleChangeOfTheDescription"
+          @changeDate="handleChangeOfTheDate"
+        />
       </div>
-    </div>
+      <CreateTask @addTaskEvent="handleAddTask" />
+      <div class="completed">
+        <Icon icon="ic:sharp-remove-red-eye" class="icon" color="#494955" />
+        <div class="completedText">
+          Completed
+          {{ completed }} of
+          {{ tasks.length }}
+        </div>
+      </div>
     </div>
   </main>
 </template>
@@ -111,7 +111,7 @@ const handleAddTask = (task: string) => {
     border-color 0.3s ease;
 }
 
-.app  {
+.app {
   box-sizing: border-box;
   justify-content: center;
   display: flex;

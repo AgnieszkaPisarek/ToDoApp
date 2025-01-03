@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, defineProps } from 'vue';
+import { computed, defineProps } from 'vue'
 
 const props = defineProps({
   completedStatus: {
@@ -9,28 +9,28 @@ const props = defineProps({
   numberOfTasks: {
     type: Number,
     required: true,
-  }
-});
+  },
+})
 const progress = computed(() => {
-  if(props.numberOfTasks === 0) {
+  if (props.numberOfTasks === 0) {
     return 100
   }
-  return (props.completedStatus / props.numberOfTasks) * 100;
-});
+  return (props.completedStatus / props.numberOfTasks) * 100
+})
 </script>
 
 <template>
   <div class="bar-container">
-    <div class="bar" :style="{ width: progress + '%'}"></div>
+    <div class="bar" :style="{ width: progress + '%' }"></div>
   </div>
 </template>
 
 <style scoped>
-.bar-container  {
+.bar-container {
   width: 100%;
 }
-.bar  {
+.bar {
   height: 15px;
-  background-color: #F1C232;
+  background-color: #f1c232;
 }
 </style>
