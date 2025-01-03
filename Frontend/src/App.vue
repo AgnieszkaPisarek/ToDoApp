@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { Icon } from '@iconify/vue'
 import RandomText from '@/components/RandomText.vue'
-import Task from '@/components/Task.vue'
+import Task from '@/components/TaskContainer.vue'
 import CreateTask from '@/components/CreateTask.vue'
 import ProgressBar from '@/components/ProgressBar.vue'
 import { computed, ref } from 'vue'
