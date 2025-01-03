@@ -3,7 +3,8 @@ import { Icon } from '@iconify/vue'
 import RandomText from '@/components/RandomText.vue'
 import Task from '@/components/Task.vue'
 import CreateTask from '@/components/CreateTask.vue'
-import { ref } from 'vue'
+import ProgressBar from '@/components/ProgressBar.vue'
+import { computed, ref } from 'vue'
 import dayjs from "dayjs";
 
 const encouragement = 'Manage your tasks and stay productive...'
@@ -14,6 +15,10 @@ type Task = {
   completed: boolean
 }
 const tasks = ref<Task[]>([])
+
+const completed = computed(() => {
+  return tasks.value.filter((task) => task.completed).length;
+});
 
 const handleDeleteTask = (index: number) => {
   tasks.value = tasks.value.filter((value) => value.index !== index)
@@ -57,7 +62,9 @@ const handleAddTask = (task: string) => {
 </script>
 
 <template>
-  <main class="app">
+  <main class="frame">
+    <ProgressBar :completedStatus="completed" :numberOfTasks="tasks.length"/>
+    <div class="app">
     <section class="greeting">
       <RandomText />
       <div class="encouragement">{{ encouragement }}</div>
@@ -81,29 +88,34 @@ const handleAddTask = (task: string) => {
       <Icon icon="ic:sharp-remove-red-eye" class="icon" color="#494955" />
       <div class="completedText">
         Completed
-        {{ tasks.filter((task) => task.completed === true).length }} of
+        {{ completed }} of
         {{ tasks.length }}
       </div>
+    </div>
     </div>
   </main>
 </template>
 
 <style scoped>
-.app {
+.frame {
+  overflow: hidden;
   margin: 50px auto auto;
-  box-sizing: border-box;
-  height: 900px;
+  height: 950px;
   width: 1050px;
-  justify-content: center;
-  display: flex;
-  flex-direction: column;
   border: 0 solid #ccc;
   border-radius: 20px;
-  padding: 70px 135px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
   transition:
     box-shadow 0.3s ease,
     border-color 0.3s ease;
+}
+
+.app  {
+  box-sizing: border-box;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  padding: 50px 135px;
 }
 
 .icon {
