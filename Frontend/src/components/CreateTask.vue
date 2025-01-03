@@ -37,7 +37,7 @@ const handleClick = () => {
     <input
       v-model="input"
       :placeholder="createNewTaskText"
-      class="checkButton"
+      class="createTaskInput"
       @focus="clearPlaceholder"
       @blur="restorePlaceholder"
     />
@@ -130,7 +130,7 @@ const handleClick = () => {
   background: #ededed;
 }
 
-.checkButton {
+.createTaskInput {
   width: 25px;
   height: 25px;
   background-color: #ededed;
