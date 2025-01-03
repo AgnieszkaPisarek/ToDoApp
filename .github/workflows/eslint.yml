@@ -18,4 +18,4 @@ jobs:
 
       - name: Run ESLint
         working-directory: ./Frontend
-        run: npx eslint --ext .js,.jsx,.vue,.ts,.tsx,.mts .
+        run: npx eslint "**/*.{js,jsx,vue,ts,tsx,mts}"
