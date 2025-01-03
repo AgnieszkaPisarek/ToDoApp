@@ -4,7 +4,7 @@ import OptionsMenu from '@/components/OptionsMenu.vue'
 const input = defineModel()
 const isChecked = ref(false)
 
-const task = ref<HTMLInputElement | null>(null)
+const taskInput = ref<HTMLInputElement | null>(null)
 
 const props = defineProps({
   task: {
@@ -62,7 +62,7 @@ function clickCheck() {
   <section class="task">
     <div class="task-container">
       <input id="checkButton" type="checkbox" v-model="isChecked" @click="clickCheck" />
-      <input class="thingToDo" type="text" v-model="input" ref="task" @input="handleChangeOfTaskDescription" :style="{ textDecoration: isChecked ? 'line-through' : 'none' }" />
+      <input class="thingToDo" type="text" v-model="input" ref="taskInput" @input="handleChangeOfTaskDescription" :style="{ textDecoration: isChecked ? 'line-through' : 'none' }" />
       <input class="date" type="date" @change="handleChangeOfDate" v-model="date"/>
       <OptionsMenu :taskIndex="index" @handleDeleteEvent="handleDeleteClick" />
     </div>

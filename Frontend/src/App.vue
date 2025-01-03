@@ -15,7 +15,7 @@ type Task = {
   completed: boolean
 }
 const tasks = ref<Task[]>([])
-const bla
+
 const completed = computed(() => {
   return tasks.value.filter((task) => task.completed).length;
 });
@@ -32,7 +32,7 @@ const handleStateOfTheTask = (index: number) => {
 }
 
 const getDate = () => {
-  let date = dayjs(new Date());
+  const date = dayjs(new Date());
   return date.format("YYYY-MM-DD")
 }
 
@@ -73,6 +73,7 @@ const handleAddTask = (task: string) => {
       <Task
         v-model="task.task"
         v-for="task in tasks"
+        :key="task.index"
         :task="task.task"
         :index="task.index"
         :date="task.date"
