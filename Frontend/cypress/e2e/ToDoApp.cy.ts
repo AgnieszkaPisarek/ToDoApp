@@ -39,6 +39,7 @@ describe('Creating tasks', () => {
     cy.get('.thingToDo').eq(0).should('have.value', 'Wash the dishes')
     cy.get('.completedText').should('contain.text', 'Completed 0 of 2') // error here
 
+
     cy.get('.createTaskInput').type("Take out the trash")
     cy.get('.addTaskButton').click()
     cy.get('.thingToDo').eq(1).should('have.value', 'Take out the trash')
