@@ -19,4 +19,4 @@ jobs:
 
       - name: Check code with Prettier
         working-directory: ./Frontend
-        run: npx prettier --check
+        run: npx prettier --check "**/*.{js,ts,html,css,json,vue}"
