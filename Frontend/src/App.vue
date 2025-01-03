@@ -15,7 +15,7 @@ type Task = {
   completed: boolean
 }
 const tasks = ref<Task[]>([])
-
+const bla
 const completed = computed(() => {
   return tasks.value.filter((task) => task.completed).length;
 });

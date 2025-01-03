@@ -27,9 +27,7 @@
     "pinia": "^2.2.6",
     "vue": "^3.5.12",
     "vue-progressbar": "^0.7.5",
-    "vue-router": "^4.4.5",
-    "vue-simple-progress": "^1.1.1",
-    "vuejs-progress-bar": "^1.2.8"
+    "vue-router": "^4.4.5"
   },
   "devDependencies": {
     "@tsconfig/node22": "^22.0.0",
