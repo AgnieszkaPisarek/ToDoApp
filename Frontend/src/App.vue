@@ -122,7 +122,7 @@ const handleChangeOfTheDate = async (index: string, date: string) => {
 const handleAddTask = async (task: string) => {
   const currentDateInProperFormat = getDate()
   tasks.value.push({
-    id: (tasks.value.length + 1).toString(),
+    id: generateId(),
     description: task,
     date: currentDateInProperFormat,
     completed: false,
@@ -139,6 +139,14 @@ const handleAddTask = async (task: string) => {
   } catch (err) {
     console.log(err)
   }
+}
+
+const generateId = () =>  {
+  let id = tasks.value.length + 1
+  if(tasks.value.find((value) => Number(value.id) === id)) {
+    id++
+  }
+  return id.toString()
 }
 </script>
 
