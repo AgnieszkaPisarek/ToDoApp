@@ -15,18 +15,16 @@
     "lint": "eslint . --fix",
     "format": "prettier --write src/",
     "cy:open": "cypress open",
-    "cy:run": "cypress run"
+    "cy:run": "cypress run",
+    "json-server": "npx json-server mock-data/db.json"
   },
   "dependencies": {
-    "@aacassandra/vue3-progressbar": "^1.0.3",
     "@coreui/vue": "^5.4.1",
     "@iconify/vue": "^4.2.0",
     "dayjs": "^1.11.13",
-    "devextreme-vue": "^24.2.3",
-    "oh-vue-icons": "^1.0.0-rc3",
+    "js-confetti": "^0.12.0",
     "pinia": "^2.2.6",
     "vue": "^3.5.12",
-    "vue-progressbar": "^0.7.5",
     "vue-router": "^4.4.5"
   },
   "devDependencies": {
@@ -44,8 +42,9 @@
     "eslint-plugin-cypress": "^4.1.0",
     "eslint-plugin-vue": "^9.30.0",
     "jsdom": "^25.0.1",
+    "json-server": "^1.0.0-beta.3",
     "npm-run-all2": "^7.0.1",
-    "prettier": "^3.3.3",
+    "prettier": "^3.4.2",
     "start-server-and-test": "^2.0.8",
     "typescript": "~5.6.3",
     "vite": "^5.4.10",
