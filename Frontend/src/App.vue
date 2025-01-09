@@ -9,6 +9,7 @@ import JSConfetti from 'js-confetti'
 import dayjs from 'dayjs'
 
 const encouragement = 'Manage your tasks and stay productive...'
+const jsonServerURL = 'http://localhost:3000/tasks'
 type Task = {
   id: number
   task: string
@@ -16,11 +17,11 @@ type Task = {
   completed: boolean
 }
 const tasks = ref<Task[]>([])
-const confetti = new JSConfetti()
 
+const confetti = new JSConfetti()
 onMounted(async () => {
   try {
-    const res = await fetch('http://localhost:3000/tasks')
+    const res = await fetch(jsonServerURL)
     tasks.value = await res.json()
   } catch (err) {
     console.log(err)
@@ -36,8 +37,18 @@ const completed = computed(() => {
   return numberOfCompletedTask
 })
 
-const handleDeleteTask = (index: number) => {
-  tasks.value = tasks.value.filter((value) => value.id !== index)
+const handleDeleteTask = async (index: number) => {
+  try {
+    const taskToDeleteURL = jsonServerURL + '/' + index
+    const response = await fetch(taskToDeleteURL, {
+      method: "DELETE",
+    })
+    if (response.ok) {
+      tasks.value = tasks.value.filter((value) => value.id !== index)
+    }
+  } catch (err) {
+    console.log(err)
+  }
 }
 
 const handleStateOfTheTask = (index: number) => {
