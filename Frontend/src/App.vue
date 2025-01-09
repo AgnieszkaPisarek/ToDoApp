@@ -30,8 +30,13 @@ onMounted(async () => {
 })
 
 const completed = computed(() => {
-  const numberOfCompletedTask = tasks.value.filter((task) => task.completed).length
-  if(numberOfCompletedTask === tasks.value.length && numberOfCompletedTask !== 0) {
+  const numberOfCompletedTask = tasks.value.filter(
+    (task) => task.completed
+  ).length
+  if (
+    numberOfCompletedTask === tasks.value.length &&
+    numberOfCompletedTask !== 0
+  ) {
     confetti.addConfetti()
   }
   return numberOfCompletedTask
@@ -42,7 +47,7 @@ const handleDeleteTask = async (index: string) => {
   try {
     const taskToDeleteURL = jsonServerURL + '/' + index
     await fetch(taskToDeleteURL, {
-      method: "DELETE",
+      method: 'DELETE',
     })
   } catch (err) {
     console.log(err)
@@ -57,11 +62,11 @@ const handleStateOfTheTask = async (index: string) => {
   try {
     const taskToDeleteURL = jsonServerURL + '/' + index
     await fetch(taskToDeleteURL, {
-      method: "PUT",
+      method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(task)
+      body: JSON.stringify(task),
     })
   } catch (err) {
     console.log(err)
@@ -73,7 +78,10 @@ const getDate = () => {
   return date.format('YYYY-MM-DD')
 }
 
-const handleChangeOfTheDescription = async (index: string, description: string) => {
+const handleChangeOfTheDescription = async (
+  index: string,
+  description: string
+) => {
   const task = tasks.value.find((task) => task.id === index)
   if (task) {
     task.description = description
@@ -81,11 +89,11 @@ const handleChangeOfTheDescription = async (index: string, description: string) 
   try {
     const taskToDeleteURL = jsonServerURL + '/' + index
     await fetch(taskToDeleteURL, {
-      method: "PUT",
+      method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(task)
+      body: JSON.stringify(task),
     })
   } catch (err) {
     console.log(err)
@@ -100,11 +108,11 @@ const handleChangeOfTheDate = async (index: string, date: string) => {
   try {
     const taskToDeleteURL = jsonServerURL + '/' + index
     await fetch(taskToDeleteURL, {
-      method: "PUT",
+      method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(task)
+      body: JSON.stringify(task),
     })
   } catch (err) {
     console.log(err)
@@ -122,11 +130,11 @@ const handleAddTask = async (task: string) => {
 
   try {
     await fetch(jsonServerURL, {
-      method: "POST",
+      method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(tasks.value[tasks.value.length - 1])
+      body: JSON.stringify(tasks.value[tasks.value.length - 1]),
     })
   } catch (err) {
     console.log(err)
