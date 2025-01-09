@@ -12,7 +12,7 @@ const encouragement = 'Manage your tasks and stay productive...'
 const jsonServerURL = 'http://localhost:3000/tasks'
 type Task = {
   id: number
-  task: string
+  description: string
   date: string
   completed: boolean
 }
@@ -38,23 +38,33 @@ const completed = computed(() => {
 })
 
 const handleDeleteTask = async (index: number) => {
+  tasks.value = tasks.value.filter((value) => value.id !== index)
   try {
     const taskToDeleteURL = jsonServerURL + '/' + index
-    const response = await fetch(taskToDeleteURL, {
+    await fetch(taskToDeleteURL, {
       method: "DELETE",
     })
-    if (response.ok) {
-      tasks.value = tasks.value.filter((value) => value.id !== index)
-    }
   } catch (err) {
     console.log(err)
   }
 }
 
-const handleStateOfTheTask = (index: number) => {
+const handleStateOfTheTask = async (index: number) => {
   const task = tasks.value.find((value) => value.id === index)
   if (task) {
     task.completed = !task.completed
+  }
+  try {
+    const taskToDeleteURL = jsonServerURL + '/' + index
+    await fetch(taskToDeleteURL, {
+      method: "PUT",
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(task)
+    })
+  } catch (err) {
+    console.log(err)
   }
 }
 
@@ -63,17 +73,41 @@ const getDate = () => {
   return date.format('YYYY-MM-DD')
 }
 
-const handleChangeOfTheDescription = (index: number, description: string) => {
+const handleChangeOfTheDescription = async (index: number, description: string) => {
   const task = tasks.value.find((task) => task.id === index)
   if (task) {
-    task.task = description
+    task.description = description
+  }
+  try {
+    const taskToDeleteURL = jsonServerURL + '/' + index
+    await fetch(taskToDeleteURL, {
+      method: "PUT",
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(task)
+    })
+  } catch (err) {
+    console.log(err)
   }
 }
 
-const handleChangeOfTheDate = (index: number, date: string) => {
+const handleChangeOfTheDate = async (index: number, date: string) => {
   const task = tasks.value.find((task) => task.id === index)
   if (task) {
     task.date = date
+  }
+  try {
+    const taskToDeleteURL = jsonServerURL + '/' + index
+    await fetch(taskToDeleteURL, {
+      method: "PUT",
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(task)
+    })
+  } catch (err) {
+    console.log(err)
   }
 }
 
@@ -81,7 +115,7 @@ const handleAddTask = (task: string) => {
   const currentDateInProperFormat = getDate()
   tasks.value.push({
     id: tasks.value.length,
-    task: task,
+    description: task,
     date: currentDateInProperFormat,
     completed: false,
   })
@@ -98,10 +132,10 @@ const handleAddTask = (task: string) => {
       </section>
       <div class="tasksField">
         <Task
-          v-model="task.task"
+          v-model="task.description"
           v-for="task in tasks"
           :key="task.id"
-          :task="task.task"
+          :task="task.description"
           :index="task.id"
           :date="task.date"
           :completed="task.completed"
