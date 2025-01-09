@@ -4,28 +4,44 @@ import RandomText from '@/components/RandomText.vue'
 import Task from '@/components/TaskContainer.vue'
 import CreateTask from '@/components/CreateTask.vue'
 import ProgressBar from '@/components/ProgressBar.vue'
-import { computed, ref } from 'vue'
+import { computed, onMounted, ref } from 'vue'
+import JSConfetti from 'js-confetti'
 import dayjs from 'dayjs'
 
 const encouragement = 'Manage your tasks and stay productive...'
 type Task = {
-  index: number
+  id: number
   task: string
   date: string
   completed: boolean
 }
 const tasks = ref<Task[]>([])
+const confetti = new JSConfetti()
+
+onMounted(async () => {
+  try {
+    const res = await fetch('http://localhost:3000/tasks')
+    tasks.value = await res.json()
+  } catch (err) {
+    console.log(err)
+  }
+  return { tasks }
+})
 
 const completed = computed(() => {
-  return tasks.value.filter((task) => task.completed).length
+  const numberOfCompletedTask = tasks.value.filter((task) => task.completed).length
+  if(numberOfCompletedTask === tasks.value.length && numberOfCompletedTask !== 0) {
+    confetti.addConfetti()
+  }
+  return numberOfCompletedTask
 })
 
 const handleDeleteTask = (index: number) => {
-  tasks.value = tasks.value.filter((value) => value.index !== index)
+  tasks.value = tasks.value.filter((value) => value.id !== index)
 }
 
 const handleStateOfTheTask = (index: number) => {
-  const task = tasks.value.find((value) => value.index === index)
+  const task = tasks.value.find((value) => value.id === index)
   if (task) {
     task.completed = !task.completed
   }
@@ -37,14 +53,14 @@ const getDate = () => {
 }
 
 const handleChangeOfTheDescription = (index: number, description: string) => {
-  const task = tasks.value.find((task) => task.index === index)
+  const task = tasks.value.find((task) => task.id === index)
   if (task) {
     task.task = description
   }
 }
 
 const handleChangeOfTheDate = (index: number, date: string) => {
-  const task = tasks.value.find((task) => task.index === index)
+  const task = tasks.value.find((task) => task.id === index)
   if (task) {
     task.date = date
   }
@@ -53,7 +69,7 @@ const handleChangeOfTheDate = (index: number, date: string) => {
 const handleAddTask = (task: string) => {
   const currentDateInProperFormat = getDate()
   tasks.value.push({
-    index: tasks.value.length,
+    id: tasks.value.length,
     task: task,
     date: currentDateInProperFormat,
     completed: false,
@@ -73,9 +89,9 @@ const handleAddTask = (task: string) => {
         <Task
           v-model="task.task"
           v-for="task in tasks"
-          :key="task.index"
+          :key="task.id"
           :task="task.task"
-          :index="task.index"
+          :index="task.id"
           :date="task.date"
           :completed="task.completed"
           @deleteTaskEvent="handleDeleteTask"

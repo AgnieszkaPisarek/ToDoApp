@@ -1,0 +1,28 @@
+{
+  "tasks": [
+    {
+      "id": "1",
+      "task": "Take a dog for a walk",
+      "date": "2025-01-03",
+      "completed": true
+    },
+    {
+      "id": "2",
+      "task": "Take out the trash",
+      "date": "2025-01-04",
+      "completed": false
+    },
+    {
+      "id": "3",
+      "task": "Do the dishes",
+      "date": "2025-01-05",
+      "completed": false
+    },
+    {
+      "id": "4",
+      "task": "Updated task title",
+      "date": "2025-01-07",
+      "completed": true
+    }
+  ]
+}
