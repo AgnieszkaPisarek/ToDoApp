@@ -11,7 +11,7 @@ import dayjs from 'dayjs'
 const encouragement = 'Manage your tasks and stay productive...'
 const jsonServerURL = 'http://localhost:3000/tasks'
 type Task = {
-  id: number
+  id: string
   description: string
   date: string
   completed: boolean
@@ -37,7 +37,7 @@ const completed = computed(() => {
   return numberOfCompletedTask
 })
 
-const handleDeleteTask = async (index: number) => {
+const handleDeleteTask = async (index: string) => {
   tasks.value = tasks.value.filter((value) => value.id !== index)
   try {
     const taskToDeleteURL = jsonServerURL + '/' + index
@@ -49,7 +49,7 @@ const handleDeleteTask = async (index: number) => {
   }
 }
 
-const handleStateOfTheTask = async (index: number) => {
+const handleStateOfTheTask = async (index: string) => {
   const task = tasks.value.find((value) => value.id === index)
   if (task) {
     task.completed = !task.completed
@@ -73,7 +73,7 @@ const getDate = () => {
   return date.format('YYYY-MM-DD')
 }
 
-const handleChangeOfTheDescription = async (index: number, description: string) => {
+const handleChangeOfTheDescription = async (index: string, description: string) => {
   const task = tasks.value.find((task) => task.id === index)
   if (task) {
     task.description = description
@@ -92,7 +92,7 @@ const handleChangeOfTheDescription = async (index: number, description: string) 
   }
 }
 
-const handleChangeOfTheDate = async (index: number, date: string) => {
+const handleChangeOfTheDate = async (index: string, date: string) => {
   const task = tasks.value.find((task) => task.id === index)
   if (task) {
     task.date = date
@@ -114,7 +114,7 @@ const handleChangeOfTheDate = async (index: number, date: string) => {
 const handleAddTask = async (task: string) => {
   const currentDateInProperFormat = getDate()
   tasks.value.push({
-    id: tasks.value.length + 1,
+    id: (tasks.value.length + 1).toString(),
     description: task,
     date: currentDateInProperFormat,
     completed: false,

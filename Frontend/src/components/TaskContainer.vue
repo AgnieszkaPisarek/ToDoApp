@@ -12,7 +12,7 @@ const props = defineProps({
     required: true,
   },
   index: {
-    type: Number,
+    type: String,
     required: true,
   },
   date: {
@@ -27,10 +27,10 @@ const props = defineProps({
 const date = ref(props.date)
 isChecked.value = props.completed
 const emit = defineEmits<{
-  (event: 'deleteTaskEvent', index: number): void
-  (event: 'markAsCompleteEvent', index: number): void
-  (event: 'changeTaskDescription', index: number, description: string): void
-  (event: 'changeDate', index: number, date: string): void
+  (event: 'deleteTaskEvent', index: string): void
+  (event: 'markAsCompleteEvent', index: string): void
+  (event: 'changeTaskDescription', index: string, description: string): void
+  (event: 'changeDate', index: string, date: string): void
 }>()
 
 const handleDeleteClick = () => {
