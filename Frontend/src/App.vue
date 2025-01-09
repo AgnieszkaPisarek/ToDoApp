@@ -111,14 +111,26 @@ const handleChangeOfTheDate = async (index: number, date: string) => {
   }
 }
 
-const handleAddTask = (task: string) => {
+const handleAddTask = async (task: string) => {
   const currentDateInProperFormat = getDate()
   tasks.value.push({
-    id: tasks.value.length,
+    id: tasks.value.length + 1,
     description: task,
     date: currentDateInProperFormat,
     completed: false,
   })
+
+  try {
+    await fetch(jsonServerURL, {
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(tasks.value[tasks.value.length - 1])
+    })
+  } catch (err) {
+    console.log(err)
+  }
 }
 </script>
 
