@@ -1,7 +1,7 @@
 package klosebrothers.ToDoApp;
 
 public class Task {
-    private String id;
+    final private String id;
     private String description;
     private String date;
     private boolean completed;
@@ -15,10 +15,6 @@ public class Task {
 
     public String getId() {
         return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 
     public String getDescription() {
@@ -43,5 +39,15 @@ public class Task {
 
     public void setCompleted(boolean completed) {
         this.completed = completed;
+    }
+
+    @Override
+    public String toString() {
+        return "Task{" +
+                "id='" + id + '\'' +
+                ", description='" + description + '\'' +
+                ", date='" + date + '\'' +
+                ", completed=" + completed +
+                '}';
     }
 }

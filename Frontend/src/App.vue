@@ -60,8 +60,8 @@ const handleStateOfTheTask = async (index: string) => {
     task.completed = !task.completed
   }
   try {
-    const taskToDeleteURL = jsonServerURL + '/' + index
-    await fetch(taskToDeleteURL, {
+    const taskToEditURL = jsonServerURL + '/' + index
+    await fetch(taskToEditURL, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -87,8 +87,8 @@ const handleChangeOfTheDescription = async (
     task.description = description
   }
   try {
-    const taskToDeleteURL = jsonServerURL + '/' + index
-    await fetch(taskToDeleteURL, {
+    const taskToEditURL = jsonServerURL + '/' + index
+    await fetch(taskToEditURL, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -106,8 +106,8 @@ const handleChangeOfTheDate = async (index: string, date: string) => {
     task.date = date
   }
   try {
-    const taskToDeleteURL = jsonServerURL + '/' + index
-    await fetch(taskToDeleteURL, {
+    const taskToEditURL = jsonServerURL + '/' + index
+    await fetch(taskToEditURL, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
