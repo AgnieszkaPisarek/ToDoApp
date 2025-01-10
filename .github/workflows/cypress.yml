@@ -20,6 +20,10 @@ jobs:
       - name: Run development server
         working-directory: ./Frontend
         run: nohup npm run dev &
+        
+      - name: Run json server
+        working-directory: ./Frontend
+        run: npx json-server mock-data/db.json &
 
       - name: Run Cypress tests
         working-directory: ./Frontend
