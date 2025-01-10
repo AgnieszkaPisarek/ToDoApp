@@ -9,7 +9,7 @@ import JSConfetti from 'js-confetti'
 import dayjs from 'dayjs'
 
 const encouragement = 'Manage your tasks and stay productive...'
-const jsonServerURL = 'http://localhost:3000/tasks'
+const jsonServerURL = 'http://localhost:8080/tasks'
 type Task = {
   id: string
   description: string

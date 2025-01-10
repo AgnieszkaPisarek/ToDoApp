@@ -16,7 +16,8 @@
     "format": "prettier --write src/",
     "cy:open": "cypress open",
     "cy:run": "cypress run",
-    "json-server": "npx json-server mock-data/db.json"
+    "json-server": "npx json-server mock-data/db.json",
+    "copy-to-static": "npm run build && cp -r dist/* ../Backend/src/main/resources/static/"
   },
   "dependencies": {
     "@coreui/vue": "^5.4.1",
