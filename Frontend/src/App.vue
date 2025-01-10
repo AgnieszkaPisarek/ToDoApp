@@ -141,9 +141,9 @@ const handleAddTask = async (task: string) => {
   }
 }
 
-const generateId = () =>  {
+const generateId = () => {
   let id = tasks.value.length + 1
-  if(tasks.value.find((value) => Number(value.id) === id)) {
+  if (tasks.value.find((value) => Number(value.id) === id)) {
     id++
   }
   return id.toString()
