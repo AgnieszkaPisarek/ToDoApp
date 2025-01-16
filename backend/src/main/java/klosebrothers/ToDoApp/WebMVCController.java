@@ -1,12 +1,12 @@
 package klosebrothers.ToDoApp;
 
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:5173")
 public class WebMVCController {
 
     private static final List<Task> tasks;
