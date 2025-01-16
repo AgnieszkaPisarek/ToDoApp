@@ -3,25 +3,19 @@
     {
       "id": "1",
       "description": "Take a dog for a walk",
-      "date": "2012-12-12",
+      "date": "2025-01-03",
       "completed": true
     },
     {
       "id": "2",
       "description": "Take out the trash",
       "date": "2025-01-04",
-      "completed": false
+      "completed": true
     },
     {
       "id": "3",
       "description": "Do the dishes",
       "date": "2025-01-05",
-      "completed": false
-    },
-    {
-      "id": "4",
-      "description": "Updated task title",
-      "date": "2025-01-07",
       "completed": true
     }
   ]

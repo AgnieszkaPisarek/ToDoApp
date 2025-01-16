@@ -19,10 +19,11 @@ type Task = {
 const tasks = ref<Task[]>([])
 
 const confetti = new JSConfetti()
+
 onMounted(async () => {
   try {
-    const res = await fetch(jsonServerURL)
-    tasks.value = await res.json()
+    const response = await fetch(jsonServerURL)
+    tasks.value = await response.json()
   } catch (err) {
     console.log(err)
   }
