@@ -7,7 +7,7 @@ import ProgressBar from '@/components/ProgressBar.vue'
 import { computed, onMounted, ref } from 'vue'
 import JSConfetti from 'js-confetti'
 import dayjs from 'dayjs'
-import { getTasks } from '@/services/task-service'
+import {addTask, getTasks} from '@/services/task-service'
 
 type Task = {
   id: string
@@ -124,17 +124,8 @@ const handleAddTask = async (task: string) => {
     completed: false,
   })
 
-  try {
-    await fetch(jsonServerURL, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(tasks.value[tasks.value.length - 1]),
-    })
-  } catch (err) {
-    console.log(err)
-  }
+  const newTask = tasks.value[tasks.value.length - 1]
+  await addTask(newTask)
 }
 
 const generateId = () => {
