@@ -14,13 +14,7 @@
     },
     {
       "id": "3",
-      "description": "Do the dishes",
-      "date": "2025-01-05",
-      "completed": true
-    },
-    {
-      "id": "4",
-      "description": "New task",
+      "description": "Do all the dishes",
       "date": "2025-01-16",
       "completed": false
     }

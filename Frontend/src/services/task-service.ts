@@ -20,9 +20,9 @@ export async function getTasks() : Promise<Task[]> {
   }
 }
 
-export async function addTask(task : Task) {
+export async function addTask(newTask : Task) {
   try {
-    await axios.post(jsonServerURL, JSON.stringify(task), {
+    await axios.post(jsonServerURL, JSON.stringify(newTask), {
       headers: {
         'Content-Type': 'application/json',
       },
@@ -32,4 +32,24 @@ export async function addTask(task : Task) {
   }
 }
 
+export async function deleteTask(index : string)  {
+  try {
+    const URLofTaskToBeDeleted = jsonServerURL + '/' + index;
+    await axios.delete(URLofTaskToBeDeleted)
+  } catch (error) {
+    console.error(error)
+  }
+}
 
+export async function editTask(index : string, editedTask : Task)  {
+  try {
+    const URLofTaskToBeEdited = jsonServerURL + '/' + index;
+    await axios.put(URLofTaskToBeEdited, JSON.stringify(editedTask), {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+  } catch (error) {
+    console.error(error)
+  }
+}
