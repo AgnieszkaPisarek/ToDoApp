@@ -7,7 +7,12 @@ import ProgressBar from '@/components/ProgressBar.vue'
 import { computed, onMounted, ref } from 'vue'
 import JSConfetti from 'js-confetti'
 import dayjs from 'dayjs'
-import {addTask, getTasks, deleteTask, editTask} from '@/services/task-service'
+import {
+  addTask,
+  getTasks,
+  deleteTask,
+  editTask,
+} from '@/services/task-service'
 
 type Task = {
   id: string
@@ -18,11 +23,11 @@ type Task = {
 
 const encouragement = 'Manage your tasks and stay productive...'
 const confetti = new JSConfetti()
-const tasks = ref<Task[]>([]);
+const tasks = ref<Task[]>([])
 
 onMounted(async () => {
-    tasks.value = await getTasks();
-});
+  tasks.value = await getTasks()
+})
 
 const completed = computed(() => {
   const numberOfCompletedTask = tasks.value.filter(
