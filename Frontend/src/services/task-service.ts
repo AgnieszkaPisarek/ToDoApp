@@ -20,4 +20,16 @@ export async function getTasks() : Promise<Task[]> {
   }
 }
 
+export async function addTask(task : Task) {
+  try {
+    await axios.post(jsonServerURL, JSON.stringify(task), {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+  } catch (error) {
+    console.error(error)
+  }
+}
+
 
