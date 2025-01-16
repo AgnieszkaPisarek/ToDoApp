@@ -23,7 +23,6 @@
     "@coreui/vue": "^5.4.1",
     "@iconify/vue": "^4.2.0",
     "axios": "^1.7.9",
-    "cors": "^2.8.5",
     "dayjs": "^1.11.13",
     "js-confetti": "^0.12.0",
     "pinia": "^2.2.6",
@@ -32,6 +31,8 @@
   },
   "devDependencies": {
     "@tsconfig/node22": "^22.0.0",
+    "@types/cors": "^2.8.17",
+    "@types/express": "^5.0.0",
     "@types/jsdom": "^21.1.7",
     "@types/node": "^22.9.0",
     "@vitejs/plugin-vue": "^5.1.4",

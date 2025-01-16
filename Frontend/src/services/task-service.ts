@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const jsonServerURL = 'http://localhost:3000/tasks'
+const jsonServerURL = 'http://localhost:8080/tasks'
 
 type Task = {
   id: string
