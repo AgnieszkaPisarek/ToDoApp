@@ -1,5 +1,6 @@
 package klosebrothers.ToDoApp;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -9,12 +10,19 @@ import java.util.List;
 @CrossOrigin(origins = "http://localhost:5173")
 public class WebMVCController {
 
-    TaskService taskService;
+    @Autowired
+    TaskService taskService = new TaskService();
+    public record TaskDTO(String id, String description, String date, boolean completed) {}
 
     @GetMapping("/tasks")
     @ResponseBody
-    public List<TaskEntity> returnTasks() {
-        return taskService.getAllTasks();
+    public List<TaskDTO> returnTasks() {
+        List<TaskDTO> recordTasks = new ArrayList<>();
+        List<TaskService.Task> tasks = taskService.getAllTasks();
+        for (TaskService.Task task : tasks) {
+            recordTasks.add(new TaskDTO(String.valueOf(task.id()), task.description(), task.date(), task.completed()));
+        }
+        return recordTasks;
     }
 
     @DeleteMapping("/tasks/{id}")

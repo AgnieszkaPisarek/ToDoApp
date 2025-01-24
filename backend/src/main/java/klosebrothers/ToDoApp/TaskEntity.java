@@ -11,7 +11,7 @@ import lombok.Setter;
 public class TaskEntity {
 
     @Id
-    private String id;
+    private int id;
     private String description;
     private String date;
     private boolean completed;
