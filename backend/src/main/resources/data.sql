@@ -1,7 +1,9 @@
-CREATE TABLE tasks (
+DROP TABLE IF EXISTS TASKS;
+
+CREATE TABLE TASKS (
    id INT PRIMARY KEY,
-   description varchar(255),
-   date varchar(10),
+   description VARCHAR(255),
+   date VARCHAR(10),
    completed BOOLEAN
 );
 

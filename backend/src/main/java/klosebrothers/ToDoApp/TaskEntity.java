@@ -11,11 +11,10 @@ import lombok.Setter;
 public class TaskEntity {
 
     @Id
-    private int id;
+    private String id;
     private String description;
     private String date;
     private boolean completed;
 
     protected TaskEntity() {}
-
 }
