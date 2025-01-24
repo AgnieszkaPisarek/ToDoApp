@@ -57,6 +57,12 @@
 			<version>1.18.36</version>
 			<scope>provided</scope>
 		</dependency>
+
+		<dependency>
+			<groupId>org.liquibase</groupId>
+			<artifactId>liquibase-core</artifactId>
+			<version>4.31.0</version>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -68,6 +74,19 @@
 					<mainClass>klosebrothers.ToDoApp.ToDoAppApplication</mainClass>
 				</configuration>
 			</plugin>
+
+			<plugin>
+				<groupId>org.liquibase</groupId>
+				<artifactId>liquibase-maven-plugin</artifactId>
+				<version>4.31.0</version>
+				<configuration>
+					<driver>org.h2.Driver</driver>
+					<url>jdbc:h2:file:./data/db</url>
+					<username>sa</username>
+					<outputChangeLogFile>src/main/resources/liquibase-outputChangeLog.xml</outputChangeLogFile>
+				</configuration>
+			</plugin>
+
 		</plugins>
 	</build>
 
