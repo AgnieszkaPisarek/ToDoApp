@@ -32,12 +32,14 @@ public class WebMVCController {
     }
 
     @PostMapping("/tasks")
-    public void addTask(@RequestBody TaskEntity newTask) {
-        taskService.addTask(newTask);
+    public void addTask(@RequestBody TaskDTO newTask) {
+        TaskEntity newTaskEntity = new TaskEntity(Integer.parseInt(newTask.id()), newTask.description, newTask.date, newTask.completed);
+        taskService.addTask(newTaskEntity);
     }
 
     @PutMapping("/tasks/{id}")
-    public void updateTask(@RequestBody TaskEntity changedTask, @PathVariable String id) {
-        taskService.editTask(changedTask);
+    public void updateTask(@RequestBody TaskDTO changedTask) {
+        TaskEntity changedTaskEntity = new TaskEntity(Integer.parseInt(changedTask.id()), changedTask.description, changedTask.date, changedTask.completed);
+        taskService.editTask(changedTaskEntity);
     }
 }
