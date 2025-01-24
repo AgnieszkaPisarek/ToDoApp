@@ -28,4 +28,8 @@ public class TaskService {
         taskRepository.save(task);
     }
 
+    public TaskEntity getTaskById(int id) {
+        return taskRepository.findById(id).orElse(null);
+    }
+
 }
