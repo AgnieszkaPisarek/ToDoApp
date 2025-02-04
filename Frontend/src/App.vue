@@ -7,27 +7,26 @@ import ProgressBar from '@/components/ProgressBar.vue'
 import { computed, onMounted, ref } from 'vue'
 import JSConfetti from 'js-confetti'
 import dayjs from 'dayjs'
+import {
+  addTask,
+  getTasks,
+  deleteTask,
+  editTask,
+} from '@/services/task-service'
 
-const encouragement = 'Manage your tasks and stay productive...'
-const jsonServerURL = 'http://localhost:3000/tasks'
 type Task = {
   id: string
   description: string
   date: string
   completed: boolean
 }
+
+const encouragement = 'Manage your tasks and stay productive...'
+const confetti = new JSConfetti()
 const tasks = ref<Task[]>([])
 
-const confetti = new JSConfetti()
-
 onMounted(async () => {
-  try {
-    const response = await fetch(jsonServerURL)
-    tasks.value = await response.json()
-  } catch (err) {
-    console.log(err)
-  }
-  return { tasks }
+  tasks.value = await getTasks()
 })
 
 const completed = computed(() => {
@@ -45,32 +44,14 @@ const completed = computed(() => {
 
 const handleDeleteTask = async (index: string) => {
   tasks.value = tasks.value.filter((value) => value.id !== index)
-  try {
-    const taskToDeleteURL = jsonServerURL + '/' + index
-    await fetch(taskToDeleteURL, {
-      method: 'DELETE',
-    })
-  } catch (err) {
-    console.log(err)
-  }
+  await deleteTask(index)
 }
 
 const handleStateOfTheTask = async (index: string) => {
   const task = tasks.value.find((value) => value.id === index)
   if (task) {
     task.completed = !task.completed
-  }
-  try {
-    const taskToEditURL = jsonServerURL + '/' + index
-    await fetch(taskToEditURL, {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(task),
-    })
-  } catch (err) {
-    console.log(err)
+    await editTask(index, task)
   }
 }
 
@@ -86,18 +67,7 @@ const handleChangeOfTheDescription = async (
   const task = tasks.value.find((task) => task.id === index)
   if (task) {
     task.description = description
-  }
-  try {
-    const taskToEditURL = jsonServerURL + '/' + index
-    await fetch(taskToEditURL, {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(task),
-    })
-  } catch (err) {
-    console.log(err)
+    await editTask(index, task)
   }
 }
 
@@ -105,18 +75,7 @@ const handleChangeOfTheDate = async (index: string, date: string) => {
   const task = tasks.value.find((task) => task.id === index)
   if (task) {
     task.date = date
-  }
-  try {
-    const taskToEditURL = jsonServerURL + '/' + index
-    await fetch(taskToEditURL, {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(task),
-    })
-  } catch (err) {
-    console.log(err)
+    await editTask(index, task)
   }
 }
 
@@ -129,17 +88,8 @@ const handleAddTask = async (task: string) => {
     completed: false,
   })
 
-  try {
-    await fetch(jsonServerURL, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(tasks.value[tasks.value.length - 1]),
-    })
-  } catch (err) {
-    console.log(err)
-  }
+  const newTask = tasks.value[tasks.value.length - 1]
+  await addTask(newTask)
 }
 
 const generateId = () => {
