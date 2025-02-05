@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet author="agnieszka" id="0">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="TASK_ENTITY"/>
+            </not>
+        </preConditions>
+        <createTable tableName="TASK_ENTITY">
+            <column name="id" type="int">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="description" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="date" type="varchar(10)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="completed" type="boolean">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="agnieszka" id="1" context="dev">
+        <insert tableName="TASK_ENTITY">
+            <column name="id" value="1"/>
+            <column name="description" value="Take a dog for a walk"/>
+            <column name="date" value="2025-02-01"/>
+            <column name="completed" value="false"/>
+        </insert>
+    </changeSet>
+
+    <changeSet author="agnieszka" id="3" context="dev">
+        <insert tableName="TASK_ENTITY">
+            <column name="id" value="2"/>
+            <column name="description" value="Do the fishes"/>
+            <column name="date" value="2025-02-02"/>
+            <column name="completed" value="false"/>
+        </insert>
+    </changeSet>
+
+    <changeSet author="agnieszka" id="4">
+        <insert tableName="TASK_ENTITY">
+            <column name="id" value="3"/>
+            <column name="description" value="Do the homework"/>
+            <column name="date" value="2025-02-03"/>
+            <column name="completed" value="false"/>
+        </insert>
+    </changeSet>
+
+    <changeSet author="agnieszka" id="5">
+        <insert tableName="TASK_ENTITY">
+            <column name="id" value="4"/>
+            <column name="description" value="Call friend"/>
+            <column name="date" value="2025-02-04"/>
+            <column name="completed" value="false"/>
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>
