@@ -6,7 +6,7 @@
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>3.4.1</version>
-		<relativePath/> <!-- lookup parent from repository -->
+		<relativePath/>
 	</parent>
 	<groupId>klosebrothers</groupId>
 	<artifactId>ToDoApp</artifactId>
@@ -81,10 +81,13 @@
 				<artifactId>liquibase-maven-plugin</artifactId>
 				<version>4.31.0</version>
 				<configuration>
-					<driver>org.h2.Driver</driver>
+					<propertyFile>src/main/resources/application-dev.properties</propertyFile>
+					<propertyFileWillOverride>true</propertyFileWillOverride>
 					<url>jdbc:h2:mem:database</url>
 					<username>sa</username>
-					<outputChangeLogFile>src/main/resources/liquibase-changeLog.xml</outputChangeLogFile>
+					<driver>org.h2.Driver</driver>
+					<changeLogFile>src/main/resources/db/changelog/db.changelog-master.xml</changeLogFile>
+
 				</configuration>
 			</plugin>
 
