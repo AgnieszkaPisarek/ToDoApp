@@ -1,4 +1,4 @@
-package klosebrothers.ToDoApp;
+package klosebrothers.todoapp;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
