@@ -13,6 +13,7 @@ import {
   deleteTask,
   editTask,
 } from '@/services/task-service'
+import UndoButton from '@/components/UndoButton.vue'
 
 type Task = {
   id: string
@@ -99,6 +100,15 @@ const generateId = () => {
   }
   return id.toString()
 }
+
+const undoDeletion = () => {
+
+}
+
+const hidePopUp = () => {
+
+}
+
 </script>
 
 <template>
@@ -124,6 +134,7 @@ const generateId = () => {
           @changeDate="handleChangeOfTheDate"
         />
       </div>
+      <UndoButton class="undoButton" @undoDeletionEvent="undoDeletion" @hidePopUpEvent="hidePopUp"/>
       <CreateTask @addTaskEvent="handleAddTask" />
       <div class="completed">
         <Icon icon="ic:sharp-remove-red-eye" class="icon" color="#494955" />
@@ -183,5 +194,9 @@ const generateId = () => {
   margin-top: 5px;
   margin-left: 10px;
   color: #494955;
+}
+
+.undoButton {
+  position: absolute;
 }
 </style>
