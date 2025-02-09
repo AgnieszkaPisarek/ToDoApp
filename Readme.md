@@ -12,3 +12,4 @@ Learn the basics of Typescript, Vue3, Spring Boot, Databases, Docker and CI/CD b
 
 Used technologies include:
 * Vue3 (Frontend)
+* Spring Boot (Backend)
