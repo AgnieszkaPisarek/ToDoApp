@@ -6,10 +6,10 @@
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>3.4.1</version>
-		<relativePath/> <!-- lookup parent from repository -->
+		<relativePath/>
 	</parent>
 	<groupId>klosebrothers</groupId>
-	<artifactId>ToDoApp</artifactId>
+	<artifactId>todoapp</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>ToDoApp</name>
 	<description>Demo project for Spring Boot</description>
@@ -49,6 +49,7 @@
 		<dependency>
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
+			<scope>runtime</scope>
 		</dependency>
 
 		<dependency>
@@ -56,6 +57,12 @@
 			<artifactId>lombok</artifactId>
 			<version>1.18.36</version>
 			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.liquibase</groupId>
+			<artifactId>liquibase-core</artifactId>
+			<version>4.31.0</version>
 		</dependency>
 	</dependencies>
 
@@ -65,7 +72,32 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
-					<mainClass>klosebrothers.ToDoApp.ToDoAppApplication</mainClass>
+					<mainClass>klosebrothers.todoapp.ToDoAppApplication</mainClass>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.liquibase</groupId>
+				<artifactId>liquibase-maven-plugin</artifactId>
+				<version>4.31.0</version>
+				<configuration>
+					<propertyFile>src/main/resources/application-dev.properties</propertyFile>
+					<propertyFileWillOverride>true</propertyFileWillOverride>
+					<url>jdbc:h2:mem:database</url>
+					<username>sa</username>
+					<driver>org.h2.Driver</driver>
+					<changeLogFile>src/main/resources/db/changelog/db.changelog-master.xml</changeLogFile>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.13.0</version>
+				<configuration>
+					<source>21</source>
+					<target>21</target>
+					<release>21</release>
 				</configuration>
 			</plugin>
 		</plugins>
